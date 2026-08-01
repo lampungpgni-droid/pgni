@@ -1,0 +1,64 @@
+pgnilampung/
+├── admin/
+│   ├── assets/
+│   │   ├── css/
+│   │   │   └── admin.css
+│   │   ├── js/
+│   │   │   └── admin.js
+│   │   └── img/
+│   ├── berita.php
+│   ├── berita_tambah.php
+│   ├── berita_edit.php
+│   ├── berita_hapus.php
+│   ├── guru.php
+│   ├── guru_verifikasi.php
+│   ├── guru_tambah.php
+│   ├── guru_edit.php
+│   ├── guru_hapus.php
+│   ├── pengurus.php
+│   ├── pengurus_tambah.php
+│   ├── pengurus_edit.php
+│   ├── pengurus_hapus.php
+│   ├── yayasan.php
+│   ├── yayasan_edit.php
+│   ├── user.php
+│   ├── user_tambah.php
+│   ├── user_edit.php
+│   ├── user_hapus.php
+│   ├── permission.php
+│   ├── wilayah.php
+│   ├── dashboard.php
+│   ├── login.php
+│   ├── logout.php
+│   └── index.php
+├── config/
+│   └── database.php
+├── include/
+│   ├── header.php
+│   ├── footer.php
+│   ├── sidebar.php
+│   └── functions.php
+├── assest/
+|   images/
+│   ├── ktp/
+│   ├── kk/
+│   ├── logo/
+│   ├── berita/
+│   ├── kegiatan/
+│   └── pengurus/
+├── videos/
+│   └── berita/
+├── upload/
+│   ├── compress.php
+│   └── upload_handler.php
+├── index.php
+├── berita.php
+├── berita_detail.php
+├── tentang.php
+├── pengurus.php
+├── kontak.php
+├── css/
+│   └── style.css
+├── js/
+│   └── script.js
+└── .htaccess

@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Struktur Organisasi Pengurus</title>
+  <style>
+    :root {
+      --bg-color: #f8fafc;
+      --card-bg: #ffffff;
+      --primary: #1e3a8a;
+      --secondary: #0d9488;
+      --accent: #d97706;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      --line-color: #94a3b8;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      padding: 20px 10px;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 25px;
+      color: var(--primary);
+      font-size: clamp(1.25rem, 4vw, 1.75rem);
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding-bottom: 30px;
+    }
+
+    .org-chart {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+    }
+
+    /* Card Layout Umum */
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px 10px;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      width: 100%;
+      max-width: 210px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+    }
+
+    /* Photo Avatar Umum */
+    .avatar-wrapper {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      margin-bottom: 8px;
+      overflow: hidden;
+      border: 3px solid #ffffff;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+      background-color: #e2e8f0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .avatar-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Text Content */
+    .card .jabatan {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 4px;
+      line-height: 1.2;
+    }
+
+    .card .nama {
+      font-size: 0.85rem;
+      font-weight: 600;
+      line-height: 1.3;
+      color: var(--text-main);
+    }
+
+    /* Color Categories */
+    .card.pembina { border-top: 4px solid var(--accent); }
+    .card.pembina .jabatan { color: var(--accent); }
+
+    .card.pengawas { border-top: 4px solid #ec4899; }
+    .card.pengawas .jabatan { color: #ec4899; }
+
+    .card.pimpinan { border-top: 4px solid var(--primary); }
+    .card.pimpinan .jabatan { color: var(--primary); }
+
+    .card.departemen { border-top: 4px solid var(--secondary); }
+    .card.departemen .jabatan { color: var(--secondary); }
+
+    /* CARD PENASEHAT */
+    .card.penasehat {
+      border-top: 3px solid #6366f1;
+      max-width: 160px;
+      padding: 8px 6px;
+    }
+    .card.penasehat .avatar-wrapper {
+      width: 45px;
+      height: 45px;
+      margin-bottom: 6px;
+      border-width: 2px;
+    }
+    .card.penasehat .jabatan {
+      color: #6366f1;
+      font-size: 0.65rem;
+      margin-bottom: 2px;
+    }
+    .card.penasehat .nama {
+      font-size: 0.78rem;
+    }
+
+    /* Structural Top Sections */
+    .top-section {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 25px;
+      width: 100%;
+    }
+
+    .group-box {
+      border: 2px dashed var(--line-color);
+      border-radius: 14px;
+      padding: 12px;
+      background: rgba(255, 255, 255, 0.6);
+      flex: 1 1 300px;
+      max-width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .group-title {
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 12px;
+      color: var(--text-muted);
+      letter-spacing: 1px;
+    }
+
+    .group-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      width: 100%;
+    }
+
+    /* KOTAK SCROLL PENASEHAT */
+    .group-box.penasehat-box {
+      flex: 1 1 340px;
+    }
+    .group-list.scrollable {
+      max-height: 380px;
+      overflow-y: auto;
+      padding-right: 4px;
+    }
+    .group-list.scrollable::-webkit-scrollbar {
+      width: 5px;
+    }
+    .group-list.scrollable::-webkit-scrollbar-track {
+      background: #f1f5f9;
+      border-radius: 10px;
+    }
+    .group-list.scrollable::-webkit-scrollbar-thumb {
+      background: #c7d2fe;
+      border-radius: 10px;
+    }
+
+    /* Connections & Lines */
+    .level {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      width: 100%;
+    }
+
+    .connector-v {
+      width: 2px;
+      height: 20px;
+      background-color: var(--line-color);
+    }
+
+    /* Section Label */
+    .section-badge {
+      background-color: var(--secondary);
+      color: #ffffff;
+      padding: 6px 18px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      box-shadow: 0 2px 6px rgba(13, 148, 136, 0.25);
+      z-index: 1;
+      margin: 4px 0;
+    }
+
+    /* Grid Departemen */
+    .horizontal-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 12px;
+      width: 100%;
+      padding-top: 15px;
+      position: relative;
+    }
+
+    /* Sembunyikan garis horizontal di layar kecil agar tidak berantakan */
+    .horizontal-grid::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 5%;
+      right: 5%;
+      height: 2px;
+      background-color: var(--line-color);
+    }
+
+    .grid-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .grid-item::before {
+      content: '';
+      width: 2px;
+      height: 15px;
+      background-color: var(--line-color);
+    }
+
+    /* === MEDIA QUERIES (MOBILE OPTIMIZATION) === */
+    @media (max-width: 768px) {
+      body {
+        padding: 15px 8px;
+      }
+
+      .horizontal-grid::before {
+        display: none; /* Hapus garis atas di HP agar lebih bersih */
+      }
+
+      .grid-item::before {
+        display: none;
+      }
+
+      .connector-v {
+        height: 15px;
+      }
+
+      /* Card di layar HP dibuat sedikit lebih compact */
+      .card {
+        max-width: 100%;
+      }
+
+      .card.penasehat {
+        max-width: 140px;
+      }
+
+      .horizontal-grid {
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>STRUKTUR ORGANISASI PENGURUS</h1>
+
+  <div class="container">
+    <div class="org-chart">
+      
+      <!-- LEVEL 1: PEMBINA, PENASEHAT, PENGAWAS -->
+      <div class="top-section">
+        
+        <!-- PEMBINA -->
+        <div class="group-box">
+          <div class="group-title">PEMBINA</div>
+          <div class="group-list">
+            <div class="card pembina">
+              <div class="avatar-wrapper"><img src="assets/images/pengurus/1784467118_6160.jpg" alt="Foto"></div>
+              <div class="jabatan">Pembina</div>
+              <div class="nama">Gubernur Lampung</div>
+            </div>
+            <div class="card pembina">
+              <div class="avatar-wrapper"><img src="assets/images/pengurus/1784467135_8591.png" alt="Foto"></div>
+              <div class="jabatan">Pembina</div>
+              <div class="nama">Kakanwil Kemenag Prop. Lampung</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PENASEHAT -->
+        <div class="group-box penasehat-box">
+          <div class="group-title">PENASEHAT</div>
+          <div class="group-list scrollable">
+            <div class="card penasehat">
+              <div class="avatar-wrapper"><img src="assets/images/pengurus/1784467198_4812.jpeg" alt="Foto"></div>
+              <div class="jabatan">Penasehat</div><div class="nama">Hi. Hulman Ardinata</div>
+            </div>
+            <div class="card penasehat">
+              <div class="avatar-wrapper"><img src="assets/images/pengurus/1784477401_8904.jpg" alt="Foto"></div>
+              <div class="jabatan">Penasehat</div><div class="nama">KH. Zamak Sari, M.Pd.</div>
+            </div>
+            <div class="card penasehat">
+              <div class="avatar-wrapper"><img src="assets/images/pengurus/1784477423_2208.jpg" alt="Foto"></div>
+              <div class="jabatan">Penasehat</div><div class="nama">KH. Lukman Hakim, M.Pd.</div>
+            </div>
+            <div class="card penasehat">
+              <div class="avatar-wrapper"><img src="assets/images/pengurus/1784482825_5759.jpg" alt="Foto"></div>
+              <div class="jabatan">Penasehat</div><div class="nama">KH. Zainal Mubarok, M.Pd.</div>
+            </div>
+            <div class="card penasehat">
+              <div class="avatar-wrapper"><img src="assets/images/pengurus/1784478217_1864.jpg" alt="Foto"></div>
+              <div class="jabatan">Penasehat</div><div class="nama">Ky. Imron Bahar</div>
+            </div>
+            <div class="card penasehat">
+              <div class="avatar-wrapper"><img src="assets/images/pengurus/1784478217_1864.jpg" alt="Foto"></div>
+              <div class="jabatan">Penasehat</div><div class="nama">KH. Rahmat Hidayat, S.Ag.</div>
+            </div>
+            <div class="card penasehat">
+              <div class="avatar-wrapper"><img src="assets/images/pengurus/1784467391_8112.jpeg" alt="Foto"></div>
+              <div class="jabatan">Penasehat</div><div class="nama">Drs. A. Romli Latif</div>
+            </div>
+            <div class="card penasehat">
+              <div class="avatar-wrapper"><img src="assets/images/pengurus/1784478217_1864.jpg" alt="Foto"></div>
+              <div class="jabatan">Penasehat</div><div class="nama">KH. Basyarudin Maisir, M.Ag.</div>
+            </div>
+            <div class="card penasehat">
+              <div class="avatar-wrapper"><img src="assets/images/pengurus/1784478217_1864.jpg" alt="Foto"></div>
+              <div class="jabatan">Penasehat</div><div class="nama">KH. Buchori Muslim, Lc. M.Ag.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PENGAWAS -->
+        <div class="group-box">
+          <div class="group-title">PENGAWAS</div>
+          <div class="group-list">
+            <div class="card pengawas">
+              <div class="avatar-wrapper"><img src="assets/images/pengurus/1784478217_1864.jpg" alt="Foto"></div>
+              <div class="jabatan">Pengawas</div><div class="nama">Hj. Haryanti Syafrin, SH</div>
+            </div>
+            <div class="card pengawas">
+              <div class="avatar-wrapper"><img src="assets/images/pengurus/1784478217_1864.jpg" alt="Foto"></div>
+              <div class="jabatan">Pengawas</div><div class="nama">Hi. Bukhori Ishlah</div>
+            </div>
+            <div class="card pengawas">
+              <div class="avatar-wrapper"><img src="assets/images/pengurus/1784478217_1864.jpg" alt="Foto"></div>
+              <div class="jabatan">Pengawas</div><div class="nama">Hi. Babai Massari, Spd.i</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="connector-v"></div>
+
+      <!-- LEVEL 2: KETUA UMUM -->
+      <div class="level">
+        <div class="card pimpinan">
+          <div class="avatar-wrapper"><img src="assets/images/pengurus/1784021633_2092.jpg" alt="Foto"></div>
+          <div class="jabatan">Ketua Umum</div>
+          <div class="nama">Ustd. Mas Amiruddin</div>
+        </div>
+      </div>
+
+      <div class="connector-v"></div>
+
+      <!-- LEVEL 3: PH -->
+      <div class="level">
+        <div class="card pimpinan">
+          <div class="avatar-wrapper"><img src="assets/images/pengurus/1784480449_3446.jpg" alt="Foto"></div>
+          <div class="jabatan">Wakil Ketua</div>
+          <div class="nama">Ust. Abdullah Syaikun, M.Pd.</div>
+        </div>
+        <div class="card pimpinan">
+          <div class="avatar-wrapper"><img src="assets/images/pengurus/1784229256_4719.jpeg" alt="Foto"></div>
+          <div class="jabatan">Sekretaris Umum</div>
+          <div class="nama">Hi. Didi Mawardi</div>
+        </div>
+        <div class="card pimpinan">
+          <div class="avatar-wrapper"><img src="assets/images/pengurus/1784467240_8504.jpeg" alt="Foto"></div>
+          <div class="jabatan">Wakil Sekretaris</div>
+          <div class="nama">Andi Yusri, S.Sos.</div>
+        </div>
+        <div class="card pimpinan">
+          <div class="avatar-wrapper"><img src="assets/images/pengurus/1784021746_7854.jpg" alt="Foto"></div>
+          <div class="jabatan">Bendahara Umum</div>
+          <div class="nama">Lilik Khosairi</div>
+        </div>
+        <div class="card pimpinan">
+          <div class="avatar-wrapper"><img src="assets/images/pengurus/1784477786_9406.jpg" alt="Foto"></div>
+          <div class="jabatan">Wakil Bendahara</div>
+          <div class="nama">Ir. Dedi Gunawan</div>
+        </div>
+      </div>
+
+      <div class="connector-v"></div>
+
+      <!-- LABEL KETUA BIDANG -->
+      <div class="section-badge">KETUA BIDANG</div>
+
+      <!-- LEVEL 4: DEPARTEMEN / BIDANG -->
+      <div class="horizontal-grid">
+        <div class="grid-item">
+          <div class="card departemen">
+            <div class="avatar-wrapper"><img src="assets/images/pengurus/1784514186_9574.jpeg" alt="Foto"></div>
+            <div class="jabatan">Organisasi & Kaderisasi</div>
+            <div class="nama">Sandi</div>
+          </div>
+        </div>
+        <div class="grid-item">
+          <div class="card departemen">
+            <div class="avatar-wrapper"><img src="assets/images/pengurus/1784477834_8482.jpg" alt="Foto"></div>
+            <div class="jabatan">Humas</div>
+            <div class="nama">Kurniawan</div>
+          </div>
+        </div>
+        <div class="grid-item">
+          <div class="card departemen">
+            <div class="avatar-wrapper"><img src="assets/images/pengurus/1784478217_1864.jpg" alt="Foto"></div>
+            <div class="jabatan">Ketenagakerjaan & Kesejahteraan</div>
+            <div class="nama">Hj. Hasti</div>
+          </div>
+        </div>
+        <div class="grid-item">
+          <div class="card departemen">
+            <div class="avatar-wrapper"><img src="assets/images/pengurus/1784478217_1864.jpg" alt="Foto"></div>
+            <div class="jabatan">Pendidikan & Pelatihan</div>
+            <div class="nama">Ust. Rusdi Kdr. Sg. MH</div>
+          </div>
+        </div>
+        <div class="grid-item">
+          <div class="card departemen">
+            <div class="avatar-wrapper"><img src="assets/images/pengurus/1784478217_1864.jpg" alt="Foto"></div>
+            <div class="jabatan">Informasi & Komunikasi</div>
+            <div class="nama">Basuki Rahmat</div>
+          </div>
+        </div>
+        <div class="grid-item">
+          <div class="card departemen">
+            <div class="avatar-wrapper"><img src="assets/images/pengurus/1784478217_1864.jpg" alt="Foto"></div>
+            <div class="jabatan">Pengembangan Karir & Profesi</div>
+            <div class="nama">Ust. Royan - SPdI</div>
+          </div>
+        </div>
+        <div class="grid-item">
+          <div class="card departemen">
+            <div class="avatar-wrapper"><img src="assets/images/pengurus/1784478217_1864.jpg" alt="Foto"></div>
+            <div class="jabatan">Penelitian & Pengembangan</div>
+            <div class="nama">DEWI DAMAYANTI</div>
+          </div>
+        </div>
+        <div class="grid-item">
+          <div class="card departemen">
+            <div class="avatar-wrapper"><img src="assets/images/pengurus/1784478217_1864.jpg" alt="Foto"></div>
+            <div class="jabatan">Da'wah</div>
+            <div class="nama">Ust. Dedi Irawan</div>
+          </div>
+        </div>
+        <div class="grid-item">
+          <div class="card departemen">
+            <div class="avatar-wrapper"><img src="assets/images/pengurus/1784478217_1864.jpg" alt="Foto"></div>
+            <div class="jabatan">Pengabdian Masyarakat</div>
+            <div class="nama">TAUFIK WIDJATI</div>
+          </div>
+        </div>
+        <div class="grid-item">
+          <div class="card departemen">
+            <div class="avatar-wrapper"><img src="assets/images/pengurus/1784478217_1864.jpg" alt="Foto"></div>
+            <div class="jabatan">Advokasi & Hukum</div>
+            <div class="nama">TB. Rizki, SH, MH</div>
+          </div>
+        </div>
+        <div class="grid-item">
+          <div class="card departemen">
+            <div class="avatar-wrapper"><img src="assets/images/pengurus/1784478217_1864.jpg" alt="Foto"></div>
+            <div class="jabatan">Advokasi & Hukum</div>
+            <div class="nama">Didi Maryono SH.</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</body>
+</html>

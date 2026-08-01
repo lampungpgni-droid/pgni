@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generator Musik Semangat & Mantap</title>
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --primary: #ef4444;
+            --primary-hover: #dc2626;
+            --accent: #f59e0b;
+            --text: #f8fafc;
+            --text-muted: #94a3b8;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            background-color: var(--card-bg);
+            border-radius: 16px;
+            padding: 30px;
+            max-width: 600px;
+            width: 100%;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            border: 2px solid #334155;
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-align: center;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 25px;
+        }
+
+        .controls {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .control-group {
+            background: #0f172a;
+            padding: 12px 16px;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        label {
+            font-size: 0.85rem;
+            font-weight: bold;
+            color: var(--accent);
+            text-transform: uppercase;
+        }
+
+        select, input[type="range"] {
+            background: #1e293b;
+            color: #fff;
+            border: 1px solid #475569;
+            padding: 8px;
+            border-radius: 4px;
+            outline: none;
+        }
+
+        .bpm-val {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-align: right;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+
+        button {
+            flex: 1;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-play {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn-play:hover {
+            background-color: var(--primary-hover);
+        }
+
+        .btn-stop {
+            background-color: #475569;
+            color: white;
+        }
+
+        .btn-stop:hover {
+            background-color: #334155;
+        }
+
+        .visualizer {
+            display: flex;
+            gap: 8px;
+            height: 60px;
+            justify-content: center;
+            align-items: flex-end;
+            background: #0f172a;
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+        .bar {
+            flex: 1;
+            background-color: #334155;
+            height: 20%;
+            border-radius: 4px;
+            transition: height 0.05s ease, background-color 0.1s ease;
+        }
+
+        .bar.active {
+            background-color: var(--primary);
+            height: 100%;
+            box-shadow: 0 0 12px var(--primary);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Power Beat Generator</h1>
+    <div class="subtitle">Ritme Tegas, Semangat & Mantap</div>
+
+    <div class="controls">
+        <div class="control-group">
+            <label for="style">Gaya Musik</label>
+            <select id="style">
+                <option value="march">Marching / Baris (Tegas)</option>
+                <option value="rock">Rock Beat (Semangat)</option>
+                <option value="cyber">Cyber Hype (Mantap)</option>
+            </select>
+        </div>
+
+        <div class="control-group">
+            <label for="bpm">Kecepatan (BPM)</label>
+            <input type="range" id="bpm" min="100" max="150" value="128">
+            <div class="bpm-val" id="bpmDisplay">128 BPM</div>
+        </div>
+    </div>
+
+    <div class="btn-group">
+        <button class="btn-play" id="playBtn">▶ Mainkan Musik</button>
+        <button class="btn-stop" id="stopBtn">⏹ Hentikan</button>
+    </div>
+
+    <div class="visualizer" id="visualizer">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+    </div>
+</div>
+
+<script>
+    let audioCtx = null;
+    let isPlaying = false;
+    let currentStep = 0;
+    let nextStepTime = 0;
+    let timerId = null;
+
+    const bpmInput = document.getElementById('bpm');
+    const bpmDisplay = document.getElementById('bpmDisplay');
+    const playBtn = document.getElementById('playBtn');
+    const stopBtn = document.getElementById('stopBtn');
+    const styleSelect = document.getElementById('style');
+    const bars = document.querySelectorAll('.bar');
+
+    bpmInput.addEventListener('input', () => {
+        bpmDisplay.textContent = `${bpmInput.value} BPM`;
+    });
+
+    function initAudio() {
+        if (!audioCtx) {
+            audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        }
+    }
+
+    // Suara Kick Drum (Mantap & Bertenaga)
+    function playKick(time) {
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+
+        osc.frequency.setValueAtTime(150, time);
+        osc.frequency.exponentialRampToValueAtTime(0.01, time + 0.5);
+
+        gain.gain.setValueAtTime(1, time);
+        gain.gain.exponentialRampToValueAtTime(0.01, time + 0.5);
+
+        osc.start(time);
+        osc.stop(time + 0.5);
+    }
+
+    // Suara Snare Drum (Tegas & Tajam)
+    function playSnare(time) {
+        const bufferSize = audioCtx.sampleRate * 0.2;
+        const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+        const output = buffer.getChannelData(0);
+        for (let i = 0; i < bufferSize; i++) {
+            output[i] = Math.random() * 2 - 1;
+        }
+
+        const whiteNoise = audioCtx.createBufferSource();
+        whiteNoise.buffer = buffer;
+
+        const filter = audioCtx.createBiquadFilter();
+        filter.type = 'highpass';
+        filter.frequency.value = 1000;
+
+        const gain = audioCtx.createGain();
+        gain.gain.setValueAtTime(0.8, time);
+        gain.gain.exponentialRampToValueAtTime(0.01, time + 0.2);
+
+        whiteNoise.connect(filter);
+        filter.connect(gain);
+        gain.connect(audioCtx.destination);
+
+        whiteNoise.start(time);
+        whiteNoise.stop(time + 0.2);
+    }
+
+    // Suara Synth Bass (Gagah & Bertenaga)
+    function playBass(time, freq) {
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = 'sawtooth';
+        osc.frequency.setValueAtTime(freq, time);
+
+        gain.gain.setValueAtTime(0.4, time);
+        gain.gain.exponentialRampToValueAtTime(0.01, time + 0.25);
+
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+
+        osc.start(time);
+        osc.stop(time + 0.25);
+    }
+
+    // Scheduler Ritme Musik
+    function scheduleNextStep() {
+        const secondsPerBeat = 60.0 / bpmInput.value;
+        const stepTime = secondsPerBeat / 4; // Ketukan 16-step
+
+        while (nextStepTime < audioCtx.currentTime + 0.1) {
+            playPattern(currentStep, nextStepTime);
+            nextStepTime += stepTime;
+            
+            // Perbarui indikator visual
+            const stepCopy = currentStep;
+            const timeCopy = nextStepTime;
+            setTimeout(() => updateVisualizer(stepCopy), (timeCopy - audioCtx.currentTime) * 1000);
+
+            currentStep = (currentStep + 1) % 16;
+        }
+        timerId = setTimeout(scheduleNextStep, 25);
+    }
+
+    // Pola Musik Berdasarkan Pilihan Style
+    function playPattern(step, time) {
+        const style = styleSelect.value;
+
+        if (style === 'march') {
+            // Pola Tegas Berbaris
+            if (step % 4 === 0) playKick(time);
+            if (step % 4 === 2 || step === 14) playSnare(time);
+            if (step % 2 === 0) playBass(time, 110); // Nada A2
+        } else if (style === 'rock') {
+            // Pola Rock Semangat
+            if (step === 0 || step === 8 || step === 10) playKick(time);
+            if (step === 4 || step === 12) playSnare(time);
+            if (step % 2 === 0) playBass(time, 82.41); // Nada E2
+        } else if (style === 'cyber') {
+            // Pola Hype & Mantap
+            if (step % 4 === 0) playKick(time);
+            if (step === 4 || step === 12) playSnare(time);
+            if (step % 2 === 1) playBass(time, 65.41); // Nada C2
+        }
+    }
+
+    function updateVisualizer(step) {
+        bars.forEach((bar, index) => {
+            if (index === (step % 4)) {
+                bar.classList.add('active');
+            } else {
+                bar.classList.remove('active');
+            }
+        });
+    }
+
+    playBtn.addEventListener('click', () => {
+        initAudio();
+        if (isPlaying) return;
+
+        if (audioCtx.state === 'suspended') {
+            audioCtx.resume();
+        }
+
+        isPlaying = true;
+        currentStep = 0;
+        nextStepTime = audioCtx.currentTime;
+        scheduleNextStep();
+    });
+
+    stopBtn.addEventListener('click', () => {
+        if (!isPlaying) return;
+        isPlaying = false;
+        clearTimeout(timerId);
+        bars.forEach(bar => bar.classList.remove('active'));
+    });
+</script>
+
+</body>
+</html>
