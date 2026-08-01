@@ -1,666 +1,502 @@
 <?php
-// donasi.php - Halaman Donasi Publik
+// admin/donasi.php - Manajemen Donasi di Admin Panel
 
-require_once __DIR__ . '/config/database.php';
-require_once __DIR__ . '/config/midtrans.php';
-require_once __DIR__ . '/include/functions.php';
-require_once __DIR__ . '/vendor/autoload.php';
+session_start();
+if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'super_admin') {
+    header('Location: login.php');
+    exit;
+}
 
-// Set title
-$title = 'Donasi';
-$meta_description = 'Donasi untuk mendukung program PGNI Lampung dalam membina guru ngaji dan pendidikan Al-Qur\'an';
-
-// Include header
-include __DIR__ . '/include/header.php';
+require_once __DIR__ . '/../config/database.php';
+require_once __DIR__ . '/../config/midtrans.php';
+require_once __DIR__ . '/../include/functions.php';
 
 // ============================================
-// HANDLE PARAMETER DARI CHAT BOT
+// FUNGSI CEK STATUS LANGSUNG KE MIDTRANS API
 // ============================================
-$chat_nominal = isset($_GET['nominal']) ? (int)$_GET['nominal'] : 0;
-$chat_email = isset($_GET['email']) ? trim(urldecode($_GET['email'])) : '';
-$chat_nama = isset($_GET['nama']) ? trim(urldecode($_GET['nama'])) : '';
-$chat_phone = isset($_GET['phone']) ? trim(urldecode($_GET['phone'])) : '';
-$chat_from = isset($_GET['from']) ? trim($_GET['from']) : '';
+function update_status_from_midtrans($conn, $order_id) {
+    if (!defined('MIDTRANS_SERVER_KEY') || empty(MIDTRANS_SERVER_KEY)) {
+        return ['success' => false, 'message' => 'MIDTRANS_SERVER_KEY belum dikonfigurasi.'];
+    }
+    
+    $is_prod = defined('MIDTRANS_IS_PRODUCTION') ? MIDTRANS_IS_PRODUCTION : false;
+    $api_url = $is_prod 
+        ? "https://api.midtrans.com/v2/" . urlencode($order_id) . "/status"
+        : "https://api.sandbox.midtrans.com/v2/" . urlencode($order_id) . "/status";
 
-// BERSIHKAN EMAIL
-$chat_email = preg_replace('/<br\s*\/?>/i', '', $chat_email);
-$chat_email = str_replace(['📌', "\n", "\r", "\t"], '', $chat_email);
-$chat_email = trim($chat_email);
-$chat_email = filter_var($chat_email, FILTER_SANITIZE_EMAIL);
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $api_url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, [
+        'Accept: application/json',
+        'Content-Type: application/json',
+        'Authorization: Basic ' . base64_encode(MIDTRANS_SERVER_KEY . ':')
+    ]);
+    curl_setopt($ch, CURLOPT_TIMEOUT, 10);
+    $response = curl_exec($ch);
+    $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    curl_close($ch);
 
-$isFromChat = ($chat_nominal > 0 && !empty($chat_email) && $chat_from === 'chat');
+    if ($http_code != 200 || !$response) {
+        return ['success' => false, 'message' => "Order ID tidak ditemukan di Midtrans (HTTP $http_code)."];
+    }
 
-// Daftar nominal donasi
-$nominal_donasi = [
-    10000, 25000, 50000, 100000, 250000, 500000
-];
+    $payload = json_decode($response, true);
+    if (!$payload || !isset($payload['transaction_status'])) {
+        return ['success' => false, 'message' => 'Respon Midtrans tidak valid.'];
+    }
 
-// Baca donasi terbaru
-$donasi_terbaru = [];
-$query = "SELECT nama_donatur, jumlah, created_at FROM donasi 
-          WHERE status IN ('settlement', 'capture') 
-          ORDER BY created_at DESC LIMIT 5";
-$result = mysqli_query($conn, $query);
-if ($result && mysqli_num_rows($result) > 0) {
-    while ($row = mysqli_fetch_assoc($result)) {
-        $donasi_terbaru[] = $row;
+    $transaction_status = $payload['transaction_status'];
+    $fraud_status       = $payload['fraud_status'] ?? '';
+    
+    $db_status = 'pending';
+    if ($transaction_status == 'capture') {
+        $db_status = ($fraud_status == 'challenge') ? 'challenge' : 'settlement';
+    } else {
+        $db_status = $transaction_status;
+    }
+
+    $transaction_id = $payload['transaction_id'] ?? null;
+    $payment_type   = $payload['payment_type'] ?? null;
+    $response_raw   = json_encode($payload);
+
+    $query = "UPDATE donasi SET 
+                status = ?, 
+                transaction_id = ?, 
+                payment_type = ?, 
+                response_raw = ? 
+              WHERE order_id = ?";
+    $stmt = mysqli_prepare($conn, $query);
+    if ($stmt) {
+        mysqli_stmt_bind_param($stmt, 'sssss', $db_status, $transaction_id, $payment_type, $response_raw, $order_id);
+        mysqli_stmt_execute($stmt);
+        mysqli_stmt_close($stmt);
+        return ['success' => true, 'status' => $db_status];
+    }
+
+    return ['success' => false, 'message' => 'Gagal memperbarui database.'];
+}
+
+// ============================================
+// HANDLER SINKRONISASI MANUAL VIA URL ACTION
+// ============================================
+$msg = '';
+$msg_type = '';
+
+if (isset($_GET['action'])) {
+    if ($_GET['action'] === 'sync' && !empty($_GET['order_id'])) {
+        $sync_id = $_GET['order_id'];
+        $res = update_status_from_midtrans($conn, $sync_id);
+        if ($res['success']) {
+            $msg = "Status Order ID <strong>" . htmlspecialchars($sync_id) . "</strong> berhasil diperbarui menjadi <strong>" . strtoupper($res['status']) . "</strong>.";
+            $msg_type = "success";
+        } else {
+            $msg = "Gagal sinkronisasi: " . htmlspecialchars($res['message']);
+            $msg_type = "danger";
+        }
+    } elseif ($_GET['action'] === 'sync_pending') {
+        $q = "SELECT order_id FROM donasi WHERE status = 'pending'";
+        $res_pending = mysqli_query($conn, $q);
+        $updated_count = 0;
+        if ($res_pending) {
+            while ($p_row = mysqli_fetch_assoc($res_pending)) {
+                $sync_res = update_status_from_midtrans($conn, $p_row['order_id']);
+                if ($sync_res['success'] && $sync_res['status'] !== 'pending') {
+                    $updated_count++;
+                }
+            }
+            $msg = "Proses selesai! <strong>$updated_count</strong> transaksi berhasil diperbarui statusnya dari Midtrans.";
+            $msg_type = "success";
+        }
     }
 }
+
+// Filter & Query Data
+$status_filter = $_GET['status'] ?? '';
+$date_filter = $_GET['date'] ?? '';
+$search = $_GET['search'] ?? '';
+
+$where = [];
+$params = [];
+$types = '';
+
+if (!empty($status_filter)) {
+    $where[] = "status = ?";
+    $params[] = $status_filter;
+    $types .= 's';
+}
+
+if (!empty($date_filter)) {
+    $where[] = "DATE(created_at) = ?";
+    $params[] = $date_filter;
+    $types .= 's';
+}
+
+if (!empty($search)) {
+    $where[] = "(order_id LIKE ? OR nama_donatur LIKE ? OR email LIKE ?)";
+    $search_term = "%$search%";
+    $params[] = $search_term;
+    $params[] = $search_term;
+    $params[] = $search_term;
+    $types .= 'sss';
+}
+
+$where_clause = !empty($where) ? 'WHERE ' . implode(' AND ', $where) : '';
+
+$query = "SELECT * FROM donasi $where_clause ORDER BY created_at DESC LIMIT 50";
+$stmt = mysqli_prepare($conn, $query);
+if (!empty($params)) {
+    mysqli_stmt_bind_param($stmt, $types, ...$params);
+}
+mysqli_stmt_execute($stmt);
+$donasi_result = mysqli_stmt_get_result($stmt);
+
+$donasi_list = [];
+if ($donasi_result && mysqli_num_rows($donasi_result) > 0) {
+    while ($row = mysqli_fetch_assoc($donasi_result)) {
+        $donasi_list[] = $row;
+    }
+}
+mysqli_stmt_close($stmt);
+
+// Summary stats
+$stats_query = "SELECT 
+                    COUNT(*) as total,
+                    SUM(CASE WHEN status IN ('settlement', 'capture') THEN jumlah ELSE 0 END) as total_donasi,
+                    COUNT(CASE WHEN status IN ('settlement', 'capture') THEN 1 END) as success_count,
+                    COUNT(CASE WHEN status = 'pending' THEN 1 END) as pending_count
+                FROM donasi";
+$stats_result = mysqli_query($conn, $stats_query);
+$stats = mysqli_fetch_assoc($stats_result);
+
+$title = 'Manajemen Donasi';
+include_once __DIR__ . '/include/admin_header.php'; 
 ?>
 
 <style>
-/* HANYA STYLE TAMBAHAN UNTUK DONASI - TIDAK MENGUBAH HEADER */
-.donasi-hero {
-    background: linear-gradient(135deg, #1a6e3a, #2e7d32);
-    padding: 40px 20px 30px;
-    text-align: center;
-    color: #fff;
-}
-.donasi-hero h1 {
-    font-size: 2rem;
-    font-weight: 700;
-    margin-bottom: 10px;
-}
-.donasi-hero p {
-    font-size: 1rem;
-    opacity: 0.9;
-    max-width: 600px;
-    margin: 0 auto 20px;
-    line-height: 1.6;
-}
-.donasi-section {
-    padding: 30px 15px 60px;
-}
-.donasi-card {
-    background: #fff;
-    border-radius: 16px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-    padding: 25px 20px;
-    max-width: 700px;
-    margin: 0 auto;
-}
-.donasi-card h2 {
-    text-align: center;
-    color: #1a6e3a;
-    margin-bottom: 8px;
-    font-size: 1.3rem;
-}
-.donasi-card .subtitle {
-    text-align: center;
-    color: #666;
-    margin-bottom: 25px;
-    font-size: 0.95rem;
-}
-.form-group {
-    margin-bottom: 18px;
-}
-.form-group label {
-    display: block;
-    font-weight: 600;
-    margin-bottom: 6px;
-    color: #333;
-    font-size: 0.95rem;
-}
-.form-group label .required {
-    color: red;
-}
-.form-group input,
-.form-group select,
-.form-group textarea {
-    width: 100%;
-    padding: 12px 16px;
-    border: 2px solid #e0e0e0;
-    border-radius: 10px;
-    font-size: 1rem;
-    transition: 0.3s;
-    font-family: inherit;
-    background: #fff;
-}
-.form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus {
-    border-color: #2e7d32;
-    outline: none;
-    box-shadow: 0 0 0 3px rgba(46,125,50,0.1);
-}
-.form-group textarea {
-    resize: vertical;
-    min-height: 80px;
-}
-.nominal-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
-    gap: 8px;
-    margin: 8px 0;
-}
-.nominal-btn {
-    padding: 10px 8px;
-    border: 2px solid #e0e0e0;
-    border-radius: 10px;
-    background: #fff;
-    cursor: pointer;
-    font-size: 0.85rem;
-    font-weight: 600;
-    transition: 0.2s;
-    font-family: inherit;
-    min-height: 44px;
-}
-.nominal-btn:hover {
-    border-color: #2e7d32;
-    background: rgba(46,125,50,0.05);
-}
-.nominal-btn.active {
-    border-color: #2e7d32;
-    background: #2e7d32;
-    color: #fff;
-}
-.nominal-input-custom {
-    margin-top: 10px;
-    display: none;
-    width: 100%;
-    padding: 12px 16px;
-    border: 2px solid #e0e0e0;
-    border-radius: 10px;
-    font-size: 1rem;
-    font-family: inherit;
-}
-.nominal-input-custom.show {
-    display: block;
-}
-.btn-donasi {
-    width: 100%;
-    padding: 14px;
-    background: #d4a847;
-    color: #fff;
-    border: none;
-    border-radius: 12px;
-    font-size: 1.1rem;
-    font-weight: 700;
-    cursor: pointer;
-    transition: 0.3s;
-    font-family: inherit;
-}
-.btn-donasi:hover {
-    background: #c49a3a;
-    box-shadow: 0 6px 25px rgba(212,168,71,0.3);
-}
-.btn-donasi:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-}
-.btn-donasi i {
-    margin-right: 8px;
-}
-.donasi-terbaru {
-    margin-top: 30px;
-    background: #fff;
-    border-radius: 16px;
-    padding: 25px 20px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-}
-.donasi-terbaru h3 {
-    color: #1a6e3a;
-    margin-bottom: 15px;
-    font-size: 1.1rem;
-}
-.donasi-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 0;
-    border-bottom: 1px solid #f0f0f0;
-    flex-wrap: wrap;
-    gap: 5px;
-}
-.donasi-item:last-child {
-    border-bottom: none;
-}
-.donasi-item .nama {
-    font-weight: 500;
-    font-size: 0.95rem;
-}
-.donasi-item .jumlah {
-    font-weight: 700;
-    color: #1a6e3a;
-    font-size: 0.95rem;
-}
-.donasi-item .tanggal {
-    font-size: 0.8rem;
-    color: #999;
-}
-.alert {
-    padding: 12px 16px;
-    border-radius: 10px;
-    margin-bottom: 18px;
-    font-size: 0.95rem;
-}
-.alert-danger {
-    background: #fde8e8;
-    color: #c0392b;
-    border: 1px solid #f5c6cb;
-}
-.alert-success {
-    background: #d4edda;
-    color: #155724;
-    border: 1px solid #c3e6cb;
-}
-.alert-info {
-    background: #d1ecf1;
-    color: #0c5460;
-    border: 1px solid #bee5eb;
-}
-.alert-chat {
-    background: #e8f5e9;
-    border: 1px solid #a5d6a7;
-    border-radius: 12px;
-    padding: 16px 18px;
-    margin-bottom: 20px;
-}
-.alert-chat .chat-header {
-    font-weight: 700;
-    font-size: 1rem;
-    color: #1b5e20;
-    margin-bottom: 10px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-.alert-chat .chat-header .chat-icon {
-    font-size: 22px;
-}
-.alert-chat .chat-body .row {
-    display: flex;
-    padding: 4px 0;
-    border-bottom: 1px solid rgba(165, 214, 167, 0.3);
-    flex-wrap: wrap;
-}
-.alert-chat .chat-body .row:last-child {
-    border-bottom: none;
-}
-.alert-chat .chat-body .label {
-    font-weight: 600;
-    color: #2e7d32;
-    min-width: 80px;
-    flex-shrink: 0;
-    font-size: 0.9rem;
-}
-.alert-chat .chat-body .value {
-    font-weight: 500;
-    color: #1b5e20;
-    word-break: break-all;
-    font-size: 0.9rem;
-}
-.alert-chat .chat-footer {
-    margin-top: 10px;
-    padding-top: 10px;
-    border-top: 1px dashed #a5d6a7;
-    font-size: 0.85rem;
-    color: #2e7d32;
-}
-.badge-chat {
-    display: inline-block;
-    background: #2e7d32;
-    color: #fff;
-    padding: 2px 12px;
-    border-radius: 20px;
-    font-size: 0.65rem;
-    font-weight: 600;
-    margin-left: 6px;
-    vertical-align: middle;
-}
-.donasi-kepercayaan {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    margin-top: 15px;
-    flex-wrap: wrap;
-}
-.donasi-kepercayaan span {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    color: rgba(255,255,255,0.9);
-    font-size: 0.8rem;
-}
-.donasi-kepercayaan i {
-    color: #d4a847;
-    font-size: 1rem;
-}
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 15px;
-}
-.text-muted {
-    color: #999;
-    font-size: 0.8rem;
-    display: block;
-    margin-top: 5px;
-}
+    .dashboard-content { padding: 0; }
+    
+    .page-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: #fff;
+        padding: 20px 25px;
+        border-radius: 12px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        margin-bottom: 25px;
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+    .page-header-left h1 {
+        font-size: 1.3rem; font-weight: 700; color: #1a1a2e; margin: 0;
+        display: flex; align-items: center; gap: 10px;
+    }
+    .page-header-left h1 i { color: #d4a847; }
+    .page-header-left .subtitle { color: #888; font-size: 0.85rem; margin-top: 4px; }
+    .page-header-right { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+    .header-badge {
+        background: linear-gradient(135deg, #f39c12, #e67e22);
+        color: #fff; padding: 6px 16px; border-radius: 20px; font-size: 0.8rem; font-weight: 500;
+        display: flex; align-items: center; gap: 8px;
+    }
+    .btn-sync-all {
+        background: #0288d1; color: #fff; padding: 7px 16px; border-radius: 8px; font-size: 0.85rem;
+        font-weight: 600; text-decoration: none; display: flex; align-items: center; gap: 8px;
+    }
 
-@media (max-width: 768px) {
-    .donasi-hero h1 {
-        font-size: 1.6rem;
+    /* STATS ROW */
+    .stats-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; margin-bottom: 25px; }
+    .stat-item {
+        background: #fff; padding: 16px 20px; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        display: flex; align-items: center; gap: 14px;
     }
-    .donasi-card {
-        padding: 20px 15px;
+    .stat-item .icon {
+        width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0;
     }
-    .nominal-grid {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 6px;
-    }
-    .nominal-btn {
-        font-size: 0.75rem;
-        padding: 8px 4px;
-        min-height: 40px;
-    }
-    .btn-donasi {
-        font-size: 1rem;
-        padding: 14px;
-    }
-    .alert-chat .chat-body .row {
-        flex-direction: column;
-        padding: 2px 0;
-    }
-    .alert-chat .chat-body .label {
-        min-width: auto;
-    }
-}
+    .stat-item .icon.green { background: rgba(26, 110, 58, 0.1); color: #1a6e3a; }
+    .stat-item .icon.blue { background: rgba(52, 152, 219, 0.1); color: #3498db; }
+    .stat-item .icon.yellow { background: rgba(243, 156, 18, 0.1); color: #f39c12; }
+    .stat-item .icon.purple { background: rgba(155, 89, 182, 0.1); color: #9b59b6; }
+    .stat-item .info h3 { font-size: 1.2rem; font-weight: 700; color: #1a1a2e; margin: 0; }
+    .stat-item .info .label { font-size: 0.75rem; color: #999; text-transform: uppercase; }
 
-@media (max-width: 400px) {
-    .nominal-grid {
-        grid-template-columns: repeat(2, 1fr);
+    /* FILTER BAR */
+    .filter-bar { background: #fff; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); padding: 18px 25px; margin-bottom: 25px; }
+    .filter-bar .filter-row { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+    .filter-bar .filter-group { display: flex; align-items: center; gap: 8px; }
+    .filter-bar .filter-group input, .filter-bar .filter-group select {
+        border: 1px solid #e0e0e0; border-radius: 8px; padding: 7px 14px; font-size: 0.85rem; background: #fff;
     }
-}
+    .filter-actions { display: flex; gap: 8px; margin-left: auto; }
+    .btn-filter { background: #1a6e3a; color: #fff; border: none; border-radius: 8px; padding: 7px 18px; font-size: 0.85rem; cursor: pointer; }
+    .btn-reset { background: #f5f5f5; color: #666; border: none; border-radius: 8px; padding: 7px 18px; font-size: 0.85rem; text-decoration: none; }
+
+    /* TABLE */
+    .table-wrapper { background: #fff; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); overflow: hidden; }
+    .table-responsive { overflow-x: auto; }
+    .table-transaction { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+    .table-transaction thead { background: #f8f9fa; border-bottom: 2px solid #e8e8e8; }
+    .table-transaction thead th { padding: 14px 18px; text-align: left; font-weight: 600; font-size: 0.7rem; text-transform: uppercase; color: #888; }
+    .table-transaction tbody td { padding: 14px 18px; border-bottom: 1px solid #f0f0f0; vertical-align: middle; }
+    
+    .cell-order-id { font-family: monospace; font-size: 0.75rem; background: #f5f5f5; padding: 2px 8px; border-radius: 4px; }
+    .status-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+    .status-dot.settlement, .status-dot.capture { background: #2ecc71; }
+    .status-dot.pending { background: #f39c12; }
+    .status-dot.deny, .status-dot.failure { background: #e74c3c; }
+    .status-dot.cancel, .status-dot.expire { background: #95a5a6; }
+    
+    .status-label.settlement, .status-label.capture { color: #1a6e3a; font-weight: 600; }
+    .status-label.pending { color: #f39c12; font-weight: 600; }
+
+    .btn-detail { background: #f8f9fa; border: 1px solid #cbd5e1; border-radius: 6px; padding: 5px 12px; font-size: 0.75rem; color: #334155; cursor: pointer; transition: all 0.2s; }
+    .btn-detail:hover { background: #d4a847; color: #fff; border-color: #d4a847; }
+    .btn-sync { background: #e3f2fd; border: 1px solid #90caf9; border-radius: 6px; padding: 5px 12px; font-size: 0.75rem; color: #0d47a1; text-decoration: none; display: inline-block; }
+    .btn-sync:hover { background: #1976d2; color: #fff; }
+
+    /* CUSTOM POPUP MODAL (STANDALONE) */
+    .custom-modal-overlay {
+        position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+        background: rgba(0, 0, 0, 0.5); backdrop-filter: blur(3px);
+        display: none; justify-content: center; align-items: center; z-index: 9999;
+    }
+    .custom-modal-box {
+        background: #fff; width: 90%; max-width: 550px; border-radius: 12px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.2); overflow: hidden; animation: popIn 0.2s ease-out;
+    }
+    @keyframes popIn {
+        from { transform: scale(0.9); opacity: 0; }
+        to { transform: scale(1); opacity: 1; }
+    }
+    .custom-modal-header {
+        padding: 16px 20px; background: #f8fafc; border-bottom: 1px solid #e2e8f0;
+        display: flex; justify-content: space-between; align-items: center;
+    }
+    .custom-modal-header h5 { margin: 0; font-size: 1rem; color: #0f172a; font-weight: 600; }
+    .custom-modal-close { background: none; border: none; font-size: 1.2rem; cursor: pointer; color: #64748b; }
+    .custom-modal-body { padding: 20px; }
+    .custom-modal-footer {
+        padding: 12px 20px; background: #f8fafc; border-top: 1px solid #e2e8f0;
+        display: flex; justify-content: flex-end; gap: 10px;
+    }
 </style>
 
-<!-- ============================================ -->
-<!-- DONASI PAGE CONTENT -->
-<!-- ============================================ -->
-<section class="donasi-hero">
-    <div class="container">
-        <h1>🤲 Donasi untuk Guru Ngaji</h1>
-        <p>Salurkan donasi Anda untuk mendukung program pembinaan, pemberdayaan, dan kesejahteraan guru ngaji di Provinsi Lampung.</p>
-        <div class="donasi-kepercayaan">
-            <span><i class="fas fa-shield-alt"></i> Aman</span>
-            <span><i class="fas fa-lock"></i> Terenkripsi</span>
-            <span><i class="fas fa-credit-card"></i> Payment Gateway</span>
+<div class="dashboard-content">
+    <?php if (!empty($msg)): ?>
+        <div class="alert alert-<?php echo $msg_type; ?> alert-dismissible fade show" role="alert" style="border-radius:10px; margin-bottom:20px;">
+            <i class="fas fa-info-circle me-2"></i> <?php echo $msg; ?>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    <?php endif; ?>
+
+    <!-- PAGE HEADER -->
+    <div class="page-header">
+        <div class="page-header-left">
+            <h1><i class="fas fa-receipt"></i> Daftar Transaksi</h1>
+            <div class="subtitle">Kelola semua data donasi yang masuk</div>
+        </div>
+        <div class="page-header-right">
+            <a href="?action=sync_pending" class="btn-sync-all" onclick="return confirm('Proses sinkronisasi semua transaksi pending dari Midtrans?')">
+                <i class="fas fa-rotate"></i> Sync Semua Pending
+            </a>
+            <span class="header-badge"><i class="fas fa-crown"></i> Super Admin</span>
         </div>
     </div>
-</section>
 
-<section class="donasi-section">
-    <div class="container">
-        <div class="donasi-card">
-            <h2>
-                Isi Form Donasi
-                <?php if ($isFromChat): ?>
-                <span class="badge-chat">🤖 Dari Chat</span>
-                <?php endif; ?>
-            </h2>
-            <p class="subtitle">Donasi Anda sangat berarti bagi masa depan pendidikan Al-Qur'an di Lampung</p>
-            
-            <?php if (isset($_GET['status']) && $_GET['status'] === 'success'): ?>
-            <div class="alert alert-success">
-                <i class="fas fa-check-circle"></i> 
-                <strong>Terima kasih!</strong> Donasi Anda berhasil diproses.
+    <!-- STATS ROW -->
+    <div class="stats-row">
+        <div class="stat-item">
+            <div class="icon green"><i class="fas fa-hand-holding-heart"></i></div>
+            <div class="info">
+                <h3>Rp <?php echo number_format($stats['total_donasi'] ?? 0, 0, ',', '.'); ?></h3>
+                <span class="label">Total Terkumpul</span>
             </div>
-            <?php endif; ?>
-            
-            <?php if (isset($_GET['status']) && $_GET['status'] === 'cancel'): ?>
-            <div class="alert alert-info">
-                <i class="fas fa-info-circle"></i> Donasi dibatalkan.
+        </div>
+        <div class="stat-item">
+            <div class="icon blue"><i class="fas fa-check-circle"></i></div>
+            <div class="info">
+                <h3><?php echo $stats['success_count'] ?? 0; ?></h3>
+                <span class="label">Berhasil</span>
             </div>
-            <?php endif; ?>
-            
-            <?php if (isset($_GET['status']) && $_GET['status'] === 'error'): ?>
-            <div class="alert alert-danger">
-                <i class="fas fa-exclamation-circle"></i> 
-                <?php echo isset($_GET['msg']) ? htmlspecialchars($_GET['msg']) : 'Silakan coba lagi.'; ?>
+        </div>
+        <div class="stat-item">
+            <div class="icon yellow"><i class="fas fa-clock"></i></div>
+            <div class="info">
+                <h3><?php echo $stats['pending_count'] ?? 0; ?></h3>
+                <span class="label">Pending</span>
             </div>
-            <?php endif; ?>
+        </div>
+        <div class="stat-item">
+            <div class="icon purple"><i class="fas fa-chart-simple"></i></div>
+            <div class="info">
+                <h3><?php echo $stats['total'] ?? 0; ?></h3>
+                <span class="label">Total Transaksi</span>
+            </div>
+        </div>
+    </div>
 
-            <!-- ALERT DARI CHAT BOT -->
-            <?php if ($isFromChat): ?>
-            <div class="alert-chat">
-                <div class="chat-header">
-                    <span class="chat-icon">🤖</span>
-                    <span>Dari PGNI Bot</span>
-                </div>
-                <div class="chat-body">
-                    <div class="row">
-                        <span class="label">💰 Nominal</span>
-                        <span class="value">Rp <?php echo number_format($chat_nominal, 0, ',', '.'); ?></span>
-                    </div>
-                    <div class="row">
-                        <span class="label">📧 Email</span>
-                        <span class="value"><?php echo htmlspecialchars($chat_email); ?></span>
-                    </div>
-                    <?php if (!empty($chat_nama)): ?>
-                    <div class="row">
-                        <span class="label">👤 Nama</span>
-                        <span class="value"><?php echo htmlspecialchars($chat_nama); ?></span>
-                    </div>
-                    <?php endif; ?>
-                    <?php if (!empty($chat_phone)): ?>
-                    <div class="row">
-                        <span class="label">📱 Telepon</span>
-                        <span class="value"><?php echo htmlspecialchars($chat_phone); ?></span>
-                    </div>
-                    <?php endif; ?>
-                </div>
-                <div class="chat-footer">
-                    💡 Konfirmasi data, lalu klik "Donasi Sekarang"
-                </div>
+    <!-- FILTER BAR -->
+    <div class="filter-bar">
+        <form method="GET" class="filter-row">
+            <div class="filter-group">
+                <label><i class="fas fa-search"></i></label>
+                <input type="text" name="search" placeholder="Cari Order ID / Donatur..." value="<?php echo htmlspecialchars($search); ?>">
             </div>
-            <?php endif; ?>
-            
-            <form id="donasiForm" method="POST" action="proses_donasi.php">
-                <?php if ($isFromChat): ?>
-                <input type="hidden" name="from_chat" value="true">
-                <?php endif; ?>
-                
-                <div class="form-group">
-                    <label for="nama_donatur">Nama Lengkap <span class="required">*</span></label>
-                    <input type="text" id="nama_donatur" name="nama_donatur" placeholder="Masukkan nama lengkap" 
-                           value="<?php echo $chat_nama ? htmlspecialchars($chat_nama) : ''; ?>" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="email">Email <span class="required">*</span></label>
-                    <input type="email" id="email" name="email" placeholder="Masukkan email aktif" 
-                           value="<?php echo $chat_email ? htmlspecialchars($chat_email) : ''; ?>" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="no_telepon">Nomor Telepon <span class="required">*</span></label>
-                    <input type="tel" id="no_telepon" name="no_telepon" placeholder="Contoh: 08123456789" 
-                           value="<?php echo $chat_phone ? htmlspecialchars($chat_phone) : ''; ?>" required>
-                </div>
-                
-                <div class="form-group">
-                    <label>Jumlah Donasi <span class="required">*</span></label>
-                    <div class="nominal-grid">
-                        <?php 
-                        $unique_nominal = array_unique($nominal_donasi);
-                        foreach ($unique_nominal as $nominal): 
-                        ?>
-                        <button type="button" class="nominal-btn <?php echo ($chat_nominal == $nominal) ? 'active' : ''; ?>" data-nominal="<?php echo $nominal; ?>">
-                            Rp <?php echo number_format($nominal, 0, ',', '.'); ?>
-                        </button>
+            <div class="filter-group">
+                <label>Status</label>
+                <select name="status">
+                    <option value="">Semua Status</option>
+                    <option value="settlement" <?php echo $status_filter === 'settlement' ? 'selected' : ''; ?>>Settlement</option>
+                    <option value="capture" <?php echo $status_filter === 'capture' ? 'selected' : ''; ?>>Capture</option>
+                    <option value="pending" <?php echo $status_filter === 'pending' ? 'selected' : ''; ?>>Pending</option>
+                    <option value="cancel" <?php echo $status_filter === 'cancel' ? 'selected' : ''; ?>>Dibatalkan</option>
+                    <option value="expire" <?php echo $status_filter === 'expire' ? 'selected' : ''; ?>>Kadaluarsa</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label>Tanggal</label>
+                <input type="date" name="date" value="<?php echo htmlspecialchars($date_filter); ?>">
+            </div>
+            <div class="filter-actions">
+                <button type="submit" class="btn-filter"><i class="fas fa-filter"></i> Filter</button>
+                <a href="donasi.php" class="btn-reset"><i class="fas fa-undo"></i> Reset</a>
+            </div>
+        </form>
+    </div>
+
+    <!-- TABLE -->
+    <div class="table-wrapper">
+        <div class="table-responsive">
+            <table class="table-transaction">
+                <thead>
+                    <tr>
+                        <th>Tanggal & Waktu</th>
+                        <th>Order ID</th>
+                        <th>Jenis Transaksi</th>
+                        <th>Channel</th>
+                        <th>Status</th>
+                        <th>Nilai</th>
+                        <th>E-mail Pelanggan</th>
+                        <th style="text-align:center;">Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php if (!empty($donasi_list)): ?>
+                        <?php foreach ($donasi_list as $row): ?>
+                        <tr>
+                            <td>
+                                <?php echo date('d M Y', strtotime($row['created_at'])); ?>
+                                <div style="font-size:0.7rem; color:#999;"><?php echo date('H:i', strtotime($row['created_at'])); ?></div>
+                            </td>
+                            <td><span class="cell-order-id"><?php echo htmlspecialchars(substr($row['order_id'], 0, 20)) . '...'; ?></span></td>
+                            <td>Pembayaran</td>
+                            <td><?php echo htmlspecialchars(strtoupper($row['payment_type'] ?? 'QRIS')); ?></td>
+                            <td>
+                                <span class="status-dot <?php echo htmlspecialchars($row['status']); ?>"></span>
+                                <span class="status-label <?php echo htmlspecialchars($row['status']); ?>">
+                                    <?php echo ucfirst(htmlspecialchars($row['status'])); ?>
+                                </span>
+                            </td>
+                            <td style="font-weight:bold; color:#1a6e3a;">Rp <?php echo number_format($row['jumlah'], 0, ',', '.'); ?></td>
+                            <td><?php echo htmlspecialchars($row['email'] ?: '-'); ?></td>
+                            <td style="text-align:center;">
+                                <button type="button" class="btn-detail" onclick="openModal('modal-<?php echo $row['id']; ?>')">
+                                    <i class="fas fa-eye"></i> Detail
+                                </button>
+                                <a href="?action=sync&order_id=<?php echo urlencode($row['order_id']); ?>" class="btn-sync" title="Cek Status dari Midtrans">
+                                    <i class="fas fa-rotate"></i> Cek Status
+                                </a>
+                            </td>
+                        </tr>
                         <?php endforeach; ?>
-                        <button type="button" class="nominal-btn <?php echo ($chat_nominal > 0 && !in_array($chat_nominal, $nominal_donasi)) ? 'active' : ''; ?>" data-nominal="custom">Custom</button>
-                    </div>
-                    <input type="number" id="jumlah" name="jumlah" class="nominal-input-custom <?php echo ($chat_nominal > 0) ? 'show' : ''; ?>" 
-                           placeholder="Masukkan nominal lainnya" 
-                           min="10000" step="1000" 
-                           value="<?php echo $chat_nominal > 0 ? $chat_nominal : ''; ?>">
-                    <span class="text-muted">Minimal donasi Rp 10.000</span>
-                </div>
-                
-                <div class="form-group">
-                    <label for="pesan">Pesan / Doa (Opsional)</label>
-                    <textarea id="pesan" name="pesan" placeholder="Tuliskan pesan atau doa untuk para guru ngaji..."><?php echo isset($_GET['pesan']) ? htmlspecialchars($_GET['pesan']) : ''; ?></textarea>
-                </div>
-                
-                <button type="submit" class="btn-donasi" id="btnDonasi">
-                    <i class="fas fa-hand-holding-heart"></i> Donasi Sekarang
-                </button>
-            </form>
+                    <?php else: ?>
+                        <tr><td colspan="8" style="text-align:center; padding:30px;">Belum ada transaksi</td></tr>
+                    <?php endif; ?>
+                </tbody>
+            </table>
         </div>
-        
-        <?php if (!empty($donasi_terbaru)): ?>
-        <div class="donasi-terbaru">
-            <h3><i class="fas fa-heart" style="color: #e74c3c;"></i> Donasi Terbaru</h3>
-            <?php foreach ($donasi_terbaru as $donasi): ?>
-            <div class="donasi-item">
-                <span class="nama"><?php echo htmlspecialchars($donasi['nama_donatur']); ?></span>
-                <span class="jumlah">Rp <?php echo number_format($donasi['jumlah'], 0, ',', '.'); ?></span>
-                <span class="tanggal"><?php echo date('d M Y', strtotime($donasi['created_at'])); ?></span>
-            </div>
-            <?php endforeach; ?>
-        </div>
-        <?php endif; ?>
     </div>
-</section>
+</div>
 
+<!-- ============================================ -->
+<!-- STANDALONE POP-UP MODAL DETIAL -->
+<!-- ============================================ -->
+<?php if (!empty($donasi_list)): ?>
+    <?php foreach ($donasi_list as $row): ?>
+    <div class="custom-modal-overlay" id="modal-<?php echo $row['id']; ?>">
+        <div class="custom-modal-box">
+            <div class="custom-modal-header">
+                <h5><i class="fas fa-receipt me-2" style="color: #d4a847;"></i> Detail Transaksi</h5>
+                <button type="button" class="custom-modal-close" onclick="closeModal('modal-<?php echo $row['id']; ?>')">&times;</button>
+            </div>
+            <div class="custom-modal-body">
+                <div style="margin-bottom: 15px;">
+                    <small style="color:#64748b; font-size:0.75rem; font-weight:700; text-transform:uppercase;">Order ID</small>
+                    <div style="font-family:monospace; background:#f1f5f9; padding:8px 12px; border-radius:6px; word-break:break-all; font-weight:600; margin-top:4px;">
+                        <?php echo htmlspecialchars($row['order_id']); ?>
+                    </div>
+                </div>
+                <div style="display:grid; grid-template-columns: 1fr 1fr; gap:15px;">
+                    <div>
+                        <small style="color:#64748b; font-size:0.75rem; font-weight:700; text-transform:uppercase;">Nama Donatur</small>
+                        <div style="font-weight:600; margin-top:2px;"><?php echo htmlspecialchars($row['nama_donatur']); ?></div>
+                    </div>
+                    <div>
+                        <small style="color:#64748b; font-size:0.75rem; font-weight:700; text-transform:uppercase;">Email</small>
+                        <div style="margin-top:2px; word-break:break-all;"><?php echo htmlspecialchars($row['email'] ?: '-'); ?></div>
+                    </div>
+                    <div>
+                        <small style="color:#64748b; font-size:0.75rem; font-weight:700; text-transform:uppercase;">Jumlah Donasi</small>
+                        <div style="font-weight:700; color:#16a34a; font-size:1.05rem; margin-top:2px;">
+                            Rp <?php echo number_format($row['jumlah'], 0, ',', '.'); ?>
+                        </div>
+                    </div>
+                    <div>
+                        <small style="color:#64748b; font-size:0.75rem; font-weight:700; text-transform:uppercase;">Status</small>
+                        <div style="margin-top:2px;">
+                            <span class="status-label <?php echo htmlspecialchars($row['status']); ?>" style="padding: 2px 8px; background: #f1f5f9; border-radius: 4px;">
+                                <?php echo ucfirst(htmlspecialchars($row['status'])); ?>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="custom-modal-footer">
+                <a href="?action=sync&order_id=<?php echo urlencode($row['order_id']); ?>" class="btn-sync" style="padding: 7px 14px; font-size:0.85rem;">
+                    <i class="fas fa-rotate"></i> Sync Status Midtrans
+                </a>
+                <button type="button" class="btn-reset" onclick="closeModal('modal-<?php echo $row['id']; ?>')" style="cursor:pointer; padding: 7px 14px;">
+                    Tutup
+                </button>
+            </div>
+        </div>
+    </div>
+    <?php endforeach; ?>
+<?php endif; ?>
+
+<!-- SCRIPT UNTUK MEMBUKA & MENUTUP MODAL -->
 <script>
-// ============================================
-// JAVASCRIPT SEDERHANA - TIDAK MENGGANGGU HEADER
-// ============================================
-(function() {
-    'use strict';
-    
-    // Inisialisasi setelah DOM ready
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', init);
-    } else {
-        init();
+function openModal(id) {
+    const modal = document.getElementById(id);
+    if (modal) {
+        modal.style.display = 'flex';
     }
-    
-    function init() {
-        var nominalBtns = document.querySelectorAll('.nominal-btn');
-        var jumlahInput = document.getElementById('jumlah');
-        var form = document.getElementById('donasiForm');
-        var btnDonasi = document.getElementById('btnDonasi');
-        
-        // Event untuk tombol nominal
-        nominalBtns.forEach(function(btn) {
-            btn.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                // Hapus active dari semua
-                nominalBtns.forEach(function(b) {
-                    b.classList.remove('active');
-                });
-                
-                // Active tombol yang diklik
-                this.classList.add('active');
-                
-                // Tampilkan input custom
-                if (this.dataset.nominal === 'custom') {
-                    jumlahInput.classList.add('show');
-                    jumlahInput.value = '';
-                    jumlahInput.focus();
-                } else {
-                    jumlahInput.classList.remove('show');
-                    jumlahInput.value = this.dataset.nominal;
-                }
-            });
-        });
-        
-        // Submit form
-        if (form) {
-            form.addEventListener('submit', function(e) {
-                e.preventDefault();
-                
-                var nama = document.getElementById('nama_donatur').value.trim();
-                var email = document.getElementById('email').value.trim();
-                var phone = document.getElementById('no_telepon').value.trim();
-                var jumlah = parseInt(jumlahInput.value);
-                
-                // Validasi
-                if (!nama || nama.length < 3) {
-                    alert('Masukkan nama lengkap (minimal 3 karakter)');
-                    document.getElementById('nama_donatur').focus();
-                    return false;
-                }
-                
-                if (!email || email.indexOf('@') === -1) {
-                    alert('Masukkan email yang valid');
-                    document.getElementById('email').focus();
-                    return false;
-                }
-                
-                if (!phone || phone.length < 10) {
-                    alert('Masukkan nomor telepon yang valid (minimal 10 digit)');
-                    document.getElementById('no_telepon').focus();
-                    return false;
-                }
-                
-                if (isNaN(jumlah) || jumlah < 10000) {
-                    alert('Minimal donasi adalah Rp 10.000');
-                    jumlahInput.focus();
-                    return false;
-                }
-                
-                // Loading
-                btnDonasi.disabled = true;
-                btnDonasi.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Memproses...';
-                
-                var formData = new FormData(form);
-                
-                fetch('proses_donasi.php', {
-                    method: 'POST',
-                    body: formData
-                })
-                .then(function(response) {
-                    return response.json();
-                })
-                .then(function(data) {
-                    if (data.success && data.redirect_url) {
-                        window.location.href = data.redirect_url;
-                    } else {
-                        alert('Gagal memproses donasi: ' + (data.error || 'Terjadi kesalahan.'));
-                        btnDonasi.disabled = false;
-                        btnDonasi.innerHTML = '<i class="fas fa-hand-holding-heart"></i> Donasi Sekarang';
-                    }
-                })
-                .catch(function(error) {
-                    console.error('Error:', error);
-                    alert('Terjadi kesalahan koneksi atau server.');
-                    btnDonasi.disabled = false;
-                    btnDonasi.innerHTML = '<i class="fas fa-hand-holding-heart"></i> Donasi Sekarang';
-                });
-            });
-        }
-        
-        // Jika dari chat, scroll ke form
-        <?php if ($isFromChat): ?>
-        setTimeout(function() {
-            var card = document.querySelector('.donasi-card');
-            if (card) {
-                card.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
-        }, 500);
-        <?php endif; ?>
-        
-        // Trigger klik untuk nominal dari chat
-        <?php if ($chat_nominal > 0): ?>
-        <?php if (in_array($chat_nominal, $nominal_donasi)): ?>
-        var targetBtn = document.querySelector('.nominal-btn[data-nominal="<?php echo $chat_nominal; ?>"]');
-        if (targetBtn) targetBtn.click();
-        <?php else: ?>
-        var customBtn = document.querySelector('.nominal-btn[data-nominal="custom"]');
-        if (customBtn) customBtn.click();
-        if (jumlahInput) jumlahInput.value = <?php echo $chat_nominal; ?>;
-        <?php endif; ?>
-        <?php endif; ?>
+}
+
+function closeModal(id) {
+    const modal = document.getElementById(id);
+    if (modal) {
+        modal.style.display = 'none';
     }
-    
-})();
+}
+
+// Tutup modal jika user mengklik area gelap luar modal
+window.onclick = function(event) {
+    if (event.target.classList.contains('custom-modal-overlay')) {
+        event.target.style.display = 'none';
+    }
+}
 </script>
 
-<?php include __DIR__ . '/include/footer.php'; ?>
-</body>
-</html>
+<?php include_once __DIR__ . '/include/admin_footer.php'; ?>
