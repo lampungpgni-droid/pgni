@@ -1,0 +1,403 @@
+{
+    "6285383833316": {
+        "state": "cek_status"
+    },
+    "guest_6a6b23edae748": {
+        "state": "menu",
+        "data": []
+    },
+    "guest_6a6b27f7037c5": {
+        "state": "menu",
+        "data": []
+    },
+    "guest_6a6b2b3c099f0": {
+        "state": "registrasi_1",
+        "data": []
+    },
+    "guest_6a6b5f93525ca": {
+        "state": "menu",
+        "data": []
+    },
+    "guest_6a6b61c0ea7e7": {
+        "state": "menu",
+        "data": []
+    },
+    "guest_6a6b63c59017c": {
+        "state": "menu",
+        "data": []
+    },
+    "guest_6a6b667768135": {
+        "state": "menu",
+        "data": []
+    },
+    "guest_6a6b67241a534": {
+        "state": "registrasi_2",
+        "data": {
+            "nama": "basuki rahmat"
+        }
+    },
+    "guest_6a6b67f056c6c": {
+        "state": "registrasi_1",
+        "data": []
+    },
+    "guest_6a6b6a1d3bd7c": {
+        "state": "registrasi_2",
+        "data": {
+            "nama": "Basuki Rahmat"
+        }
+    },
+    "guest_6a6b6a6a22c7f": {
+        "state": "registrasi_2",
+        "data": {
+            "nama": "paijo"
+        }
+    },
+    "guest_6a6b6b21731b9": {
+        "state": "menu",
+        "data": []
+    },
+    "guest_6a6b6b969a534": {
+        "state": "menu",
+        "data": []
+    },
+    "guest_6a6b6c7f34847": {
+        "state": "menu",
+        "data": []
+    },
+    "guest_6a6b6b08dd60f": {
+        "state": "menu",
+        "data": []
+    },
+    "guest_6a6b6e3d0c21c": {
+        "state": "registrasi_2",
+        "data": {
+            "nama": "Basuki Rahmat"
+        }
+    },
+    "guest_6a6b6f64b4b59": {
+        "state": "registrasi_2",
+        "data": {
+            "nama": "Basuki Rahmat"
+        }
+    },
+    "guest_6a6b70f19718e": {
+        "state": "menu",
+        "data": []
+    },
+    "guest_6a6b72deba380": {
+        "state": "menu",
+        "data": []
+    },
+    "guest_6a6b7320e711a": {
+        "state": "menu",
+        "data": []
+    },
+    "guest_6a6b7387448ca": {
+        "state": "menu",
+        "data": []
+    },
+    "guest_6a6b7406543f4": {
+        "state": "menu",
+        "data": []
+    },
+    "guest_6a6b74a43f11e": {
+        "state": "login_nik",
+        "data": []
+    },
+    "guest_6a6b74ce06633": {
+        "state": "menu",
+        "data": []
+    },
+    "guest_6a6b754bb7eed": {
+        "state": "menu",
+        "data": []
+    },
+    "guest_6a6b75a008ba6": {
+        "state": "menu",
+        "data": []
+    },
+    "guest_6a6b75f5a7524": {
+        "state": "menu",
+        "data": []
+    },
+    "guest_6a6b76a6769a8": {
+        "state": "menu",
+        "data": []
+    },
+    "guest_6a6b77688fb13": {
+        "state": "menu",
+        "data": []
+    },
+    "guest_6a6b8124374e1": {
+        "state": "menu",
+        "data": []
+    },
+    "guest_6a6b862341890": {
+        "state": "registrasi_1",
+        "data": []
+    },
+    "guest_1785432143327": {
+        "state": "menu",
+        "data": []
+    },
+    "guest_1785432233943": {
+        "state": "donasi_nominal",
+        "data": []
+    },
+    "guest_1785432385743": {
+        "state": "menu",
+        "data": []
+    },
+    "guest_1785432543521": {
+        "state": "menu",
+        "data": []
+    },
+    "guest_1785432864055": {
+        "state": "menu",
+        "data": []
+    },
+    "guest_1785433043035": {
+        "state": "menu",
+        "data": []
+    },
+    "guest_1785433071866": {
+        "state": "menu",
+        "data": []
+    },
+    "guest_1785433224724": {
+        "state": "menu",
+        "data": []
+    },
+    "guest_1785433355048": {
+        "state": "menu",
+        "data": []
+    },
+    "guest_1785433599299": {
+        "state": "menu",
+        "data": []
+    },
+    "guest_1785433846552": {
+        "state": "menu",
+        "data": []
+    },
+    "guest_1785433907210": {
+        "state": "menu",
+        "data": []
+    },
+    "guest_1785434050836": {
+        "state": "menu",
+        "data": []
+    },
+    "guest_1785434168530": {
+        "state": "menu",
+        "data": []
+    },
+    "guest_1785434353610": {
+        "state": "menu",
+        "data": []
+    },
+    "guest_1785434503822": {
+        "state": "menu",
+        "data": []
+    },
+    "guest_1785434518615": {
+        "state": "menu",
+        "data": []
+    },
+    "guest_1785434620241": {
+        "state": "menu",
+        "data": []
+    },
+    "guest_1785434630857": {
+        "state": "menu",
+        "data": []
+    },
+    "guest_1785434726015": {
+        "state": "menu",
+        "data": []
+    },
+    "guest_1785434819815": {
+        "state": "menu",
+        "data": []
+    },
+    "guest_1785434944499": {
+        "state": "menu",
+        "data": []
+    },
+    "guest_1785435241535_j9gx3j": {
+        "state": "menu",
+        "data": []
+    },
+    "guest_1785435322147_jxjs57": {
+        "state": "menu",
+        "data": []
+    },
+    "guest_1785435347950_ztsbhm": {
+        "state": "menu",
+        "data": []
+    },
+    "guest_1785435356866_xxcum2": {
+        "state": "registrasi_2",
+        "data": {
+            "nama": "Imam khanafi"
+        }
+    },
+    "guest_1785435777732_ebxeil": {
+        "state": "menu",
+        "data": []
+    },
+    "guest_1785439430257_7e3pg3": {
+        "state": "menu",
+        "data": []
+    },
+    "guest_1785449368781": {
+        "state": "cek_status",
+        "data": []
+    },
+    "guest_1785456753425_vf2kvs": {
+        "state": "menu",
+        "data": []
+    },
+    "guest_1785457836536": {
+        "state": "registrasi_1",
+        "data": []
+    },
+    "guest_1785457979840": {
+        "state": "cek_status",
+        "data": []
+    },
+    "guest_1785458963595_04df27": {
+        "state": "menu",
+        "data": []
+    },
+    "guest_1785459628645_hp9o6v": {
+        "state": "registrasi_1",
+        "data": []
+    },
+    "guest_1785463712102_dfdm17": {
+        "state": "registrasi_2",
+        "data": {
+            "nama": "Insiyah"
+        }
+    },
+    "guest_1785472792465_ts1lj3": {
+        "state": "registrasi_1",
+        "data": []
+    },
+    "guest_1785472792091": {
+        "state": "menu",
+        "data": []
+    },
+    "guest_1785474873876": {
+        "state": "menu",
+        "data": []
+    },
+    "guest_1785475285407_zxwhul": {
+        "state": "menu",
+        "data": []
+    },
+    "guest_1785475736064_gu9b2r": {
+        "state": "menu",
+        "data": []
+    },
+    "guest_1785475782344_lmk0xz": {
+        "state": "menu",
+        "data": []
+    },
+    "guest_1785475791380_mgm2a5": {
+        "state": "menu",
+        "data": []
+    },
+    "guest_1785475942174_j05qh4": {
+        "state": "menu",
+        "data": []
+    },
+    "guest_1785476187494_nkcrul": {
+        "state": "menu",
+        "data": []
+    },
+    "guest_1785476376402_fk0dri": {
+        "state": "menu",
+        "data": []
+    },
+    "guest_1785476636878_tu3u5p": {
+        "state": "menu",
+        "data": []
+    },
+    "guest_1785478226970": {
+        "state": "cek_status",
+        "data": []
+    },
+    "guest_1785478227316_ayu0t9": {
+        "state": "registrasi_1",
+        "data": []
+    },
+    "guest_1785478857943_qfwh3v": {
+        "state": "menu",
+        "data": []
+    },
+    "guest_1785480393229_77bvez": {
+        "state": "menu",
+        "data": []
+    },
+    "guest_1785482960296_f4pxgm": {
+        "state": "registrasi_2",
+        "data": {
+            "nama": "Hendri gunawan"
+        }
+    },
+    "guest_1785484355906_8opjj4": {
+        "state": "registrasi_1",
+        "data": []
+    },
+    "guest_1785484364918_ylnys5": {
+        "state": "registrasi_1",
+        "data": []
+    },
+    "guest_1785485470069_7yca78": {
+        "state": "menu",
+        "data": []
+    },
+    "guest_1785485546780_o5hs98": {
+        "state": "menu",
+        "data": []
+    },
+    "guest_1785486002385_41nha6": {
+        "state": "menu",
+        "data": []
+    },
+    "guest_1785486068451_m3m3f0": {
+        "state": "menu",
+        "data": []
+    },
+    "guest_1785487597876_44z4e7": {
+        "state": "registrasi_2",
+        "data": {
+            "nama": "Basuki Rahmat"
+        }
+    },
+    "guest_1785489113389": {
+        "state": "registrasi_1",
+        "data": []
+    },
+    "guest_1785489546335": {
+        "state": "registrasi_1",
+        "data": []
+    },
+    "guest_1785495911278_f39mr6": {
+        "state": "cek_status",
+        "data": []
+    },
+    "guest_1785502831194_9edr74": {
+        "state": "donasi_nominal",
+        "data": []
+    },
+    "guest_1785505156345_f64lgi": {
+        "state": "cek_status",
+        "data": []
+    },
+    "guest_1785517167208_7faklb": {
+        "state": "login_nik",
+        "data": []
+    }
+}

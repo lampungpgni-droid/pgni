@@ -1,0 +1,590 @@
+2026-07-30 10:14:07 | Input: {"user_id":"guest_6a6b23edae748","user_name":"Pengunjung","message":"1","session":"menu","data":{}}
+2026-07-30 10:14:07 | User: guest_6a6b23edae748, Msg: 1, State: menu
+2026-07-30 10:14:15 | Input: {"user_id":"guest_6a6b23edae748","user_name":"Pengunjung","message":"menu","session":"registrasi_1","data":[]}
+2026-07-30 10:14:15 | User: guest_6a6b23edae748, Msg: menu, State: registrasi_1
+2026-07-30 10:14:17 | Input: {"user_id":"guest_6a6b23edae748","user_name":"Pengunjung","message":"3","session":"menu","data":[]}
+2026-07-30 10:14:17 | User: guest_6a6b23edae748, Msg: 3, State: menu
+2026-07-30 10:14:31 | Input: {"user_id":"guest_6a6b23edae748","user_name":"Pengunjung","message":"6","session":"menu","data":[]}
+2026-07-30 10:14:31 | User: guest_6a6b23edae748, Msg: 6, State: menu
+2026-07-30 10:14:34 | Input: {"user_id":"guest_6a6b23edae748","user_name":"Pengunjung","message":"7","session":"menu","data":[]}
+2026-07-30 10:14:34 | User: guest_6a6b23edae748, Msg: 7, State: menu
+2026-07-30 10:14:37 | Input: {"user_id":"guest_6a6b23edae748","user_name":"Pengunjung","message":"8","session":"menu","data":[]}
+2026-07-30 10:14:37 | User: guest_6a6b23edae748, Msg: 8, State: menu
+2026-07-30 10:14:40 | Input: {"user_id":"guest_6a6b23edae748","user_name":"Pengunjung","message":"menu","session":"menu","data":[]}
+2026-07-30 10:14:40 | User: guest_6a6b23edae748, Msg: menu, State: menu
+2026-07-30 10:31:27 | Input: {"user_id":"guest_6a6b27f7037c5","user_name":"Pengunjung","message":"1","session":"menu","data":{}}
+2026-07-30 10:31:27 | User: guest_6a6b27f7037c5, Msg: 1, State: menu
+2026-07-30 10:31:38 | Input: {"user_id":"guest_6a6b27f7037c5","user_name":"Pengunjung","message":"Basuki Rahmat","session":"registrasi_1","data":[]}
+2026-07-30 10:31:38 | User: guest_6a6b27f7037c5, Msg: Basuki Rahmat, State: registrasi_1
+2026-07-30 10:31:50 | Input: {"user_id":"guest_6a6b27f7037c5","user_name":"Pengunjung","message":"1808040505830003","session":"registrasi_2","data":{"nama":"Basuki Rahmat"}}
+2026-07-30 10:31:50 | User: guest_6a6b27f7037c5, Msg: 1808040505830003, State: registrasi_2
+2026-07-30 10:32:03 | Input: {"user_id":"guest_6a6b27f7037c5","user_name":"Pengunjung","message":"batal","session":"registrasi_2","data":{"nama":"Basuki Rahmat"}}
+2026-07-30 10:32:03 | User: guest_6a6b27f7037c5, Msg: batal, State: registrasi_2
+2026-07-30 10:32:11 | Input: {"user_id":"guest_6a6b27f7037c5","user_name":"Pengunjung","message":"2","session":"menu","data":[]}
+2026-07-30 10:32:11 | User: guest_6a6b27f7037c5, Msg: 2, State: menu
+2026-07-30 10:32:26 | Input: {"user_id":"guest_6a6b27f7037c5","user_name":"Pengunjung","message":"1808040505830003","session":"cek_status","data":[]}
+2026-07-30 10:32:26 | User: guest_6a6b27f7037c5, Msg: 1808040505830003, State: cek_status
+2026-07-30 10:45:28 | Input: {"user_id":"guest_6a6b2b3c099f0","user_name":"Pengunjung","message":"4","session":"menu","data":{}}
+2026-07-30 10:45:28 | User: guest_6a6b2b3c099f0, Msg: 4, State: menu
+2026-07-30 10:45:43 | Input: {"user_id":"guest_6a6b2b3c099f0","user_name":"Pengunjung","message":"1808040505830003","session":"login_nik","data":[]}
+2026-07-30 10:45:43 | User: guest_6a6b2b3c099f0, Msg: 1808040505830003, State: login_nik
+2026-07-30 10:46:00 | Input: {"user_id":"guest_6a6b2b3c099f0","user_name":"Pengunjung","message":"pgnilampung","session":"login_password","data":{"user":{"id":"618","nik":"1808040505830003","nomor_kta":null,"kta_berlaku_sampai":null,"kta_qr_code":null,"nama":"BASUKI RAHMAT","nama_lengkap":null,"tempat_lahir":null,"tanggal_lahir
+2026-07-30 10:46:00 | User: guest_6a6b2b3c099f0, Msg: pgnilampung, State: login_password
+2026-07-30 10:46:17 | Input: {"user_id":"guest_6a6b2b3c099f0","user_name":"Pengunjung","message":"menu","session":"menu","data":[]}
+2026-07-30 10:46:17 | User: guest_6a6b2b3c099f0, Msg: menu, State: menu
+2026-07-30 10:46:21 | Input: {"user_id":"guest_6a6b2b3c099f0","user_name":"Pengunjung","message":"5","session":"menu","data":[]}
+2026-07-30 10:46:21 | User: guest_6a6b2b3c099f0, Msg: 5, State: menu
+2026-07-30 10:46:24 | Input: {"user_id":"guest_6a6b2b3c099f0","user_name":"Pengunjung","message":"7","session":"menu","data":[]}
+2026-07-30 10:46:24 | User: guest_6a6b2b3c099f0, Msg: 7, State: menu
+2026-07-30 10:46:25 | Input: {"user_id":"guest_6a6b2b3c099f0","user_name":"Pengunjung","message":"8","session":"menu","data":[]}
+2026-07-30 10:46:25 | User: guest_6a6b2b3c099f0, Msg: 8, State: menu
+2026-07-30 10:46:29 | Input: {"user_id":"guest_6a6b2b3c099f0","user_name":"Pengunjung","message":"1","session":"menu","data":[]}
+2026-07-30 10:46:29 | User: guest_6a6b2b3c099f0, Msg: 1, State: menu
+2026-07-30 14:28:38 | Input: {"user_id":"guest_6a6b5f93525ca","user_name":"Pengunjung","message":"1","session":"menu","data":{}}
+2026-07-30 14:28:38 | User: guest_6a6b5f93525ca, Msg: 1, State: menu
+2026-07-30 14:29:01 | Input: {"user_id":"guest_6a6b5f93525ca","user_name":"Pengunjung","message":"basuki rahmat","session":"registrasi_1","data":[]}
+2026-07-30 14:29:01 | User: guest_6a6b5f93525ca, Msg: basuki rahmat, State: registrasi_1
+2026-07-30 14:29:18 | Input: {"user_id":"guest_6a6b5f93525ca","user_name":"Pengunjung","message":"1808040505830003","session":"registrasi_2","data":{"nama":"basuki rahmat"}}
+2026-07-30 14:29:18 | User: guest_6a6b5f93525ca, Msg: 1808040505830003, State: registrasi_2
+2026-07-30 14:29:26 | Input: {"user_id":"guest_6a6b5f93525ca","user_name":"Pengunjung","message":"menu","session":"registrasi_2","data":{"nama":"basuki rahmat"}}
+2026-07-30 14:29:26 | User: guest_6a6b5f93525ca, Msg: menu, State: registrasi_2
+2026-07-30 14:29:28 | Input: {"user_id":"guest_6a6b5f93525ca","user_name":"Pengunjung","message":"menu","session":"menu","data":[]}
+2026-07-30 14:29:28 | User: guest_6a6b5f93525ca, Msg: menu, State: menu
+2026-07-30 14:29:52 | Input: {"user_id":"guest_6a6b5f93525ca","user_name":"Pengunjung","message":"menu","session":"menu","data":[]}
+2026-07-30 14:29:52 | User: guest_6a6b5f93525ca, Msg: menu, State: menu
+2026-07-30 14:38:15 | Input: {"user_id":"guest_6a6b61c0ea7e7","user_name":"Pengunjung","message":"1","session":"menu","data":{}}
+2026-07-30 14:38:15 | User: guest_6a6b61c0ea7e7, Msg: 1, State: menu
+2026-07-30 14:38:25 | Input: {"user_id":"guest_6a6b61c0ea7e7","user_name":"Pengunjung","message":"batal","session":"registrasi_1","data":[]}
+2026-07-30 14:38:25 | User: guest_6a6b61c0ea7e7, Msg: batal, State: registrasi_1
+2026-07-30 14:47:10 | Input: {"user_id":"guest_6a6b63c59017c","user_name":"Pengunjung","message":"2","session":"menu","data":{}}
+2026-07-30 14:47:10 | User: guest_6a6b63c59017c, Msg: 2, State: menu
+2026-07-30 14:47:12 | Input: {"user_id":"guest_6a6b63c59017c","user_name":"Pengunjung","message":"batal","session":"cek_status","data":[]}
+2026-07-30 14:47:12 | User: guest_6a6b63c59017c, Msg: batal, State: cek_status
+2026-07-30 14:58:16 | Input: {"user_id":"guest_6a6b667768135","user_name":"Pengunjung","message":"menu","session":"menu","data":{}}
+2026-07-30 14:58:16 | User: guest_6a6b667768135, Msg: menu, State: menu
+2026-07-30 15:00:59 | Input: {"user_id":"guest_6a6b67241a534","user_name":"Pengunjung","message":"1","session":"menu","data":{}}
+2026-07-30 15:00:59 | User: guest_6a6b67241a534, Msg: 1, State: menu
+2026-07-30 15:01:09 | Input: {"user_id":"guest_6a6b67241a534","user_name":"Pengunjung","message":"basuki rahmat","session":"registrasi_1","data":[]}
+2026-07-30 15:01:09 | User: guest_6a6b67241a534, Msg: basuki rahmat, State: registrasi_1
+2026-07-30 15:01:31 | Input: {"user_id":"guest_6a6b67241a534","user_name":"Pengunjung","message":"1808040505830003","session":"registrasi_2","data":{"nama":"basuki rahmat"}}
+2026-07-30 15:01:31 | User: guest_6a6b67241a534, Msg: 1808040505830003, State: registrasi_2
+2026-07-30 15:04:26 | Input: {"user_id":"guest_6a6b67f056c6c","user_name":"Pengunjung","message":"1","session":"menu","data":{}}
+2026-07-30 15:04:26 | User: guest_6a6b67f056c6c, Msg: 1, State: menu
+2026-07-30 15:13:55 | Input: {"user_id":"guest_6a6b6a1d3bd7c","user_name":"Pengunjung","message":"1","session":"menu","data":{}}
+2026-07-30 15:13:55 | User: guest_6a6b6a1d3bd7c, Msg: 1, State: menu
+2026-07-30 15:14:06 | Input: {"user_id":"guest_6a6b6a1d3bd7c","user_name":"Pengunjung","message":"Basuki Rahmat","session":"registrasi_1","data":[]}
+2026-07-30 15:14:06 | User: guest_6a6b6a1d3bd7c, Msg: Basuki Rahmat, State: registrasi_1
+2026-07-30 15:15:04 | Input: {"user_id":"guest_6a6b6a6a22c7f","user_name":"Pengunjung","message":"1","session":"menu","data":{}}
+2026-07-30 15:15:04 | User: guest_6a6b6a6a22c7f, Msg: 1, State: menu
+2026-07-30 15:15:21 | Input: {"user_id":"guest_6a6b6a6a22c7f","user_name":"Pengunjung","message":"paijo","session":"registrasi_1","data":[]}
+2026-07-30 15:15:21 | User: guest_6a6b6a6a22c7f, Msg: paijo, State: registrasi_1
+2026-07-30 15:18:06 | Input: {"user_id":"guest_6a6b6b21731b9","user_name":"Pengunjung","message":"7","session":"menu","data":{}}
+2026-07-30 15:18:06 | User: guest_6a6b6b21731b9, Msg: 7, State: menu
+2026-07-30 15:18:12 | Input: {"user_id":"guest_6a6b6b21731b9","user_name":"Pengunjung","message":"8","session":"menu","data":[]}
+2026-07-30 15:18:12 | User: guest_6a6b6b21731b9, Msg: 8, State: menu
+2026-07-30 15:18:16 | Input: {"user_id":"guest_6a6b6b21731b9","user_name":"Pengunjung","message":"7","session":"menu","data":[]}
+2026-07-30 15:18:16 | User: guest_6a6b6b21731b9, Msg: 7, State: menu
+2026-07-30 15:18:23 | Input: {"user_id":"guest_6a6b6b21731b9","user_name":"Pengunjung","message":"6","session":"menu","data":[]}
+2026-07-30 15:18:23 | User: guest_6a6b6b21731b9, Msg: 6, State: menu
+2026-07-30 15:19:57 | Input: {"user_id":"guest_6a6b6b969a534","user_name":"Pengunjung","message":"6","session":"menu","data":{}}
+2026-07-30 15:19:57 | User: guest_6a6b6b969a534, Msg: 6, State: menu
+2026-07-30 15:23:46 | Input: {"user_id":"guest_6a6b6c7f34847","user_name":"Pengunjung","message":"6","session":"menu","data":{}}
+2026-07-30 15:23:46 | User: guest_6a6b6c7f34847, Msg: 6, State: menu
+2026-07-30 15:24:26 | Input: {"user_id":"guest_6a6b6b08dd60f","user_name":"Pengunjung","message":"6","session":"menu","data":{}}
+2026-07-30 15:24:26 | User: guest_6a6b6b08dd60f, Msg: 6, State: menu
+2026-07-30 15:31:13 | Input: {"user_id":"guest_6a6b6e3d0c21c","user_name":"Pengunjung","message":"1","session":"menu","data":{}}
+2026-07-30 15:31:13 | User: guest_6a6b6e3d0c21c, Msg: 1, State: menu
+2026-07-30 15:31:17 | Input: {"user_id":"guest_6a6b6e3d0c21c","user_name":"Pengunjung","message":"Basuki Rahmat","session":"registrasi_1","data":[]}
+2026-07-30 15:31:17 | User: guest_6a6b6e3d0c21c, Msg: Basuki Rahmat, State: registrasi_1
+2026-07-30 15:31:33 | Input: {"user_id":"guest_6a6b6e3d0c21c","user_name":"Pengunjung","message":"1808040505830003","session":"registrasi_2","data":{"nama":"Basuki Rahmat"}}
+2026-07-30 15:31:33 | User: guest_6a6b6e3d0c21c, Msg: 1808040505830003, State: registrasi_2
+2026-07-30 15:37:14 | Input: {"user_id":"guest_6a6b6f64b4b59","user_name":"Pengunjung","message":"1","session":"menu","data":[]}
+2026-07-30 15:37:14 | User: guest_6a6b6f64b4b59, Msg: 1, State: menu
+2026-07-30 15:37:18 | Input: {"user_id":"guest_6a6b6f64b4b59","user_name":"Pengunjung","message":"Basuki Rahmat","session":"registrasi_1","data":[]}
+2026-07-30 15:37:18 | User: guest_6a6b6f64b4b59, Msg: Basuki Rahmat, State: registrasi_1
+2026-07-30 15:37:38 | Input: {"user_id":"guest_6a6b6f64b4b59","user_name":"Pengunjung","message":"1808040505830003","session":"registrasi_2","data":{"nama":"Basuki Rahmat"}}
+2026-07-30 15:37:38 | User: guest_6a6b6f64b4b59, Msg: 1808040505830003, State: registrasi_2
+2026-07-30 15:42:45 | Midtrans config loaded successfully
+2026-07-30 15:42:45 | Input: {"user_id":"guest_6a6b70f19718e","user_name":"Pengunjung","message":"1","session":"menu","data":{}}
+2026-07-30 15:42:45 | User: guest_6a6b70f19718e, Msg: 1, State: menu
+2026-07-30 15:42:52 | Midtrans config loaded successfully
+2026-07-30 15:42:52 | Input: {"user_id":"guest_6a6b70f19718e","user_name":"Pengunjung","message":"Basuki Rahmat","session":"registrasi_1","data":[]}
+2026-07-30 15:42:52 | User: guest_6a6b70f19718e, Msg: Basuki Rahmat, State: registrasi_1
+2026-07-30 15:43:06 | Midtrans config loaded successfully
+2026-07-30 15:43:06 | Input: {"user_id":"guest_6a6b70f19718e","user_name":"Pengunjung","message":"1808040505830003","session":"registrasi_2","data":{"nama":"Basuki Rahmat"}}
+2026-07-30 15:43:06 | User: guest_6a6b70f19718e, Msg: 1808040505830003, State: registrasi_2
+2026-07-30 15:43:09 | Midtrans config loaded successfully
+2026-07-30 15:43:09 | Input: {"user_id":"guest_6a6b70f19718e","user_name":"Pengunjung","message":"batal","session":"registrasi_2","data":{"nama":"Basuki Rahmat"}}
+2026-07-30 15:43:09 | User: guest_6a6b70f19718e, Msg: batal, State: registrasi_2
+2026-07-30 15:43:14 | Midtrans config loaded successfully
+2026-07-30 15:43:14 | Input: {"user_id":"guest_6a6b70f19718e","user_name":"Pengunjung","message":"6","session":"menu","data":[]}
+2026-07-30 15:43:14 | User: guest_6a6b70f19718e, Msg: 6, State: menu
+2026-07-30 15:43:17 | Midtrans config loaded successfully
+2026-07-30 15:43:17 | Input: {"user_id":"guest_6a6b70f19718e","user_name":"Pengunjung","message":"10000","session":"donasi_nominal","data":[]}
+2026-07-30 15:43:17 | User: guest_6a6b70f19718e, Msg: 10000, State: donasi_nominal
+2026-07-30 15:43:31 | Midtrans config loaded successfully
+2026-07-30 15:43:31 | Input: {"user_id":"guest_6a6b70f19718e","user_name":"Pengunjung","message":"fadlanbersaudara2@gmail.com","session":"donasi_email","data":{"donasi_nominal":10000}}
+2026-07-30 15:43:31 | User: guest_6a6b70f19718e, Msg: fadlanbersaudara2@gmail.com, State: donasi_email
+2026-07-30 15:43:31 | Midtrans config not available, using fallback
+2026-07-30 15:51:00 | Midtrans config loaded successfully
+2026-07-30 15:51:00 | Input: {"user_id":"guest_6a6b72deba380","user_name":"Pengunjung","message":"6","session":"menu","data":{}}
+2026-07-30 15:51:00 | User: guest_6a6b72deba380, Msg: 6, State: menu
+2026-07-30 15:51:04 | Midtrans config loaded successfully
+2026-07-30 15:51:04 | Input: {"user_id":"guest_6a6b72deba380","user_name":"Pengunjung","message":"10000","session":"donasi_nominal","data":[]}
+2026-07-30 15:51:04 | User: guest_6a6b72deba380, Msg: 10000, State: donasi_nominal
+2026-07-30 15:51:19 | Midtrans config loaded successfully
+2026-07-30 15:51:19 | Input: {"user_id":"guest_6a6b72deba380","user_name":"Pengunjung","message":"fadlanbersaudara2@gmail.com","session":"donasi_email","data":{"donasi_nominal":10000}}
+2026-07-30 15:51:19 | User: guest_6a6b72deba380, Msg: fadlanbersaudara2@gmail.com, State: donasi_email
+2026-07-30 15:51:19 | Midtrans config not available, using fallback
+2026-07-30 15:52:04 | Midtrans config loaded successfully
+2026-07-30 15:52:04 | Input: {"user_id":"guest_6a6b7320e711a","user_name":"Pengunjung","message":"6","session":"menu","data":{}}
+2026-07-30 15:52:04 | User: guest_6a6b7320e711a, Msg: 6, State: menu
+2026-07-30 15:52:06 | Midtrans config loaded successfully
+2026-07-30 15:52:06 | Input: {"user_id":"guest_6a6b7320e711a","user_name":"Pengunjung","message":"10000","session":"donasi_nominal","data":[]}
+2026-07-30 15:52:06 | User: guest_6a6b7320e711a, Msg: 10000, State: donasi_nominal
+2026-07-30 15:52:22 | Midtrans config loaded successfully
+2026-07-30 15:52:22 | Input: {"user_id":"guest_6a6b7320e711a","user_name":"Pengunjung","message":"fadlanbersaudara2@gmail.com","session":"donasi_email","data":{"donasi_nominal":10000}}
+2026-07-30 15:52:22 | User: guest_6a6b7320e711a, Msg: fadlanbersaudara2@gmail.com, State: donasi_email
+2026-07-30 15:52:22 | Midtrans config not available, using fallback
+2026-07-30 15:53:47 | Midtrans config loaded successfully
+2026-07-30 15:53:47 | Input: {"user_id":"guest_6a6b7387448ca","user_name":"Pengunjung","message":"6","session":"menu","data":{}}
+2026-07-30 15:53:47 | User: guest_6a6b7387448ca, Msg: 6, State: menu
+2026-07-30 15:53:49 | Midtrans config loaded successfully
+2026-07-30 15:53:49 | Input: {"user_id":"guest_6a6b7387448ca","user_name":"Pengunjung","message":"10000","session":"donasi_nominal","data":[]}
+2026-07-30 15:53:49 | User: guest_6a6b7387448ca, Msg: 10000, State: donasi_nominal
+2026-07-30 15:54:08 | Midtrans config loaded successfully
+2026-07-30 15:54:08 | Input: {"user_id":"guest_6a6b7387448ca","user_name":"Pengunjung","message":"fadlanbersaudara2@gmail.com","session":"donasi_email","data":{"donasi_nominal":10000}}
+2026-07-30 15:54:08 | User: guest_6a6b7387448ca, Msg: fadlanbersaudara2@gmail.com, State: donasi_email
+2026-07-30 15:54:08 | Midtrans config not available, using fallback
+2026-07-30 15:55:55 | Midtrans config loaded successfully
+2026-07-30 15:55:55 | Input: {"user_id":"guest_6a6b7406543f4","user_name":"Pengunjung","message":"6","session":"menu","data":{}}
+2026-07-30 15:55:55 | User: guest_6a6b7406543f4, Msg: 6, State: menu
+2026-07-30 15:55:57 | Midtrans config loaded successfully
+2026-07-30 15:55:57 | Input: {"user_id":"guest_6a6b7406543f4","user_name":"Pengunjung","message":"10000","session":"donasi_nominal","data":[]}
+2026-07-30 15:55:57 | User: guest_6a6b7406543f4, Msg: 10000, State: donasi_nominal
+2026-07-30 15:56:15 | Midtrans config loaded successfully
+2026-07-30 15:56:15 | Input: {"user_id":"guest_6a6b7406543f4","user_name":"Pengunjung","message":"fadlanbersaudara2@gmail.com","session":"donasi_email","data":{"donasi_nominal":10000}}
+2026-07-30 15:56:15 | User: guest_6a6b7406543f4, Msg: fadlanbersaudara2@gmail.com, State: donasi_email
+2026-07-30 15:56:15 | Midtrans config not available, using fallback
+2026-07-30 15:58:47 | Midtrans config loaded successfully
+2026-07-30 15:58:47 | Input: {"user_id":"guest_6a6b74a43f11e","user_name":"Pengunjung","message":"4","session":"menu","data":{}}
+2026-07-30 15:58:47 | User: guest_6a6b74a43f11e, Msg: 4, State: menu
+2026-07-30 15:59:21 | Midtrans config loaded successfully
+2026-07-30 15:59:21 | Input: {"user_id":"guest_6a6b74ce06633","user_name":"Pengunjung","message":"6","session":"menu","data":{}}
+2026-07-30 15:59:21 | User: guest_6a6b74ce06633, Msg: 6, State: menu
+2026-07-30 15:59:28 | Midtrans config loaded successfully
+2026-07-30 15:59:28 | Input: {"user_id":"guest_6a6b74ce06633","user_name":"Pengunjung","message":"10000","session":"donasi_nominal","data":[]}
+2026-07-30 15:59:28 | User: guest_6a6b74ce06633, Msg: 10000, State: donasi_nominal
+2026-07-30 15:59:34 | Midtrans config loaded successfully
+2026-07-30 15:59:34 | Input: {"user_id":"guest_6a6b74ce06633","user_name":"Pengunjung","message":"D","session":"donasi_email","data":{"donasi_nominal":10000}}
+2026-07-30 15:59:34 | User: guest_6a6b74ce06633, Msg: D, State: donasi_email
+2026-07-30 15:59:43 | Midtrans config loaded successfully
+2026-07-30 15:59:43 | Input: {"user_id":"guest_6a6b74ce06633","user_name":"Pengunjung","message":"fadlanbersaudara2@gmail.com","session":"donasi_email","data":{"donasi_nominal":10000}}
+2026-07-30 15:59:43 | User: guest_6a6b74ce06633, Msg: fadlanbersaudara2@gmail.com, State: donasi_email
+2026-07-30 15:59:43 | Midtrans config not available, using fallback
+2026-07-30 16:01:21 | Midtrans config loaded successfully
+2026-07-30 16:01:21 | Input: {"user_id":"guest_6a6b754bb7eed","user_name":"Pengunjung","message":"6","session":"menu","data":{}}
+2026-07-30 16:01:21 | User: guest_6a6b754bb7eed, Msg: 6, State: menu
+2026-07-30 16:01:24 | Midtrans config loaded successfully
+2026-07-30 16:01:24 | Input: {"user_id":"guest_6a6b754bb7eed","user_name":"Pengunjung","message":"10000","session":"donasi_nominal","data":[]}
+2026-07-30 16:01:24 | User: guest_6a6b754bb7eed, Msg: 10000, State: donasi_nominal
+2026-07-30 16:01:29 | Midtrans config loaded successfully
+2026-07-30 16:01:29 | Input: {"user_id":"guest_6a6b754bb7eed","user_name":"Pengunjung","message":"fadlanbersaudara2@gmail.com","session":"donasi_email","data":{"donasi_nominal":10000}}
+2026-07-30 16:01:29 | User: guest_6a6b754bb7eed, Msg: fadlanbersaudara2@gmail.com, State: donasi_email
+2026-07-30 16:01:29 | Midtrans config not available, using fallback
+2026-07-30 16:02:50 | Midtrans config loaded successfully
+2026-07-30 16:02:50 | Input: {"user_id":"guest_6a6b75a008ba6","user_name":"Pengunjung","message":"6","session":"menu","data":{}}
+2026-07-30 16:02:50 | User: guest_6a6b75a008ba6, Msg: 6, State: menu
+2026-07-30 16:02:52 | Midtrans config loaded successfully
+2026-07-30 16:02:52 | Input: {"user_id":"guest_6a6b75a008ba6","user_name":"Pengunjung","message":"25000","session":"donasi_nominal","data":[]}
+2026-07-30 16:02:52 | User: guest_6a6b75a008ba6, Msg: 25000, State: donasi_nominal
+2026-07-30 16:03:10 | Midtrans config loaded successfully
+2026-07-30 16:03:10 | Input: {"user_id":"guest_6a6b75a008ba6","user_name":"Pengunjung","message":"fadlanbersaudara2@gmil.com","session":"donasi_email","data":{"donasi_nominal":25000}}
+2026-07-30 16:03:10 | User: guest_6a6b75a008ba6, Msg: fadlanbersaudara2@gmil.com, State: donasi_email
+2026-07-30 16:03:10 | Midtrans config not available, using fallback
+2026-07-30 16:04:18 | Midtrans config loaded successfully
+2026-07-30 16:04:18 | Input: {"user_id":"guest_6a6b75f5a7524","user_name":"Pengunjung","message":"5","session":"menu","data":{}}
+2026-07-30 16:04:18 | User: guest_6a6b75f5a7524, Msg: 5, State: menu
+2026-07-30 16:04:21 | Midtrans config loaded successfully
+2026-07-30 16:04:21 | Input: {"user_id":"guest_6a6b75f5a7524","user_name":"Pengunjung","message":"6","session":"menu","data":[]}
+2026-07-30 16:04:21 | User: guest_6a6b75f5a7524, Msg: 6, State: menu
+2026-07-30 16:04:23 | Midtrans config loaded successfully
+2026-07-30 16:04:23 | Input: {"user_id":"guest_6a6b75f5a7524","user_name":"Pengunjung","message":"25000","session":"donasi_nominal","data":[]}
+2026-07-30 16:04:23 | User: guest_6a6b75f5a7524, Msg: 25000, State: donasi_nominal
+2026-07-30 16:04:30 | Midtrans config loaded successfully
+2026-07-30 16:04:30 | Input: {"user_id":"guest_6a6b75f5a7524","user_name":"Pengunjung","message":"fadlanbersaudara2@gmail.com","session":"donasi_email","data":{"donasi_nominal":25000}}
+2026-07-30 16:04:30 | User: guest_6a6b75f5a7524, Msg: fadlanbersaudara2@gmail.com, State: donasi_email
+2026-07-30 16:04:30 | Midtrans config not available, using fallback
+2026-07-30 16:07:07 | Midtrans config loaded successfully
+2026-07-30 16:07:07 | Input: {"user_id":"guest_6a6b76a6769a8","user_name":"Pengunjung","message":"6","session":"menu","data":{}}
+2026-07-30 16:07:07 | User: guest_6a6b76a6769a8, Msg: 6, State: menu
+2026-07-30 16:07:10 | Midtrans config loaded successfully
+2026-07-30 16:07:10 | Input: {"user_id":"guest_6a6b76a6769a8","user_name":"Pengunjung","message":"25000","session":"donasi_nominal","data":[]}
+2026-07-30 16:07:10 | User: guest_6a6b76a6769a8, Msg: 25000, State: donasi_nominal
+2026-07-30 16:07:17 | Midtrans config loaded successfully
+2026-07-30 16:07:17 | Input: {"user_id":"guest_6a6b76a6769a8","user_name":"Pengunjung","message":"fadlanbersaudara2@gmail.com","session":"donasi_email","data":{"donasi_nominal":25000}}
+2026-07-30 16:07:17 | User: guest_6a6b76a6769a8, Msg: fadlanbersaudara2@gmail.com, State: donasi_email
+2026-07-30 16:07:17 | Midtrans config not available, using fallback
+2026-07-30 16:10:20 | Midtrans config loaded successfully
+2026-07-30 16:10:20 | Input: {"user_id":"guest_6a6b77688fb13","user_name":"Pengunjung","message":"6","session":"menu","data":{}}
+2026-07-30 16:10:20 | User: guest_6a6b77688fb13, Msg: 6, State: menu
+2026-07-30 16:10:22 | Midtrans config loaded successfully
+2026-07-30 16:10:22 | Input: {"user_id":"guest_6a6b77688fb13","user_name":"Pengunjung","message":"25000","session":"donasi_nominal","data":[]}
+2026-07-30 16:10:22 | User: guest_6a6b77688fb13, Msg: 25000, State: donasi_nominal
+2026-07-30 16:10:32 | Midtrans config loaded successfully
+2026-07-30 16:10:32 | Input: {"user_id":"guest_6a6b77688fb13","user_name":"Pengunjung","message":"ada@gmail.com","session":"donasi_email","data":{"donasi_nominal":25000}}
+2026-07-30 16:10:32 | User: guest_6a6b77688fb13, Msg: ada@gmail.com, State: donasi_email
+2026-07-30 16:10:32 | Midtrans config not available, using fallback
+2026-07-30 16:52:04 | Midtrans config loaded successfully
+2026-07-30 16:52:04 | Input: {"user_id":"guest_6a6b8124374e1","user_name":"Pengunjung","message":"1","session":"menu","data":{}}
+2026-07-30 16:52:04 | User: guest_6a6b8124374e1, Msg: 1, State: menu
+2026-07-30 16:52:39 | Midtrans config loaded successfully
+2026-07-30 16:52:39 | Input: {"user_id":"guest_6a6b8124374e1","user_name":"Pengunjung","message":"batal","session":"registrasi_1","data":[]}
+2026-07-30 16:52:39 | User: guest_6a6b8124374e1, Msg: batal, State: registrasi_1
+2026-07-30 16:52:41 | Midtrans config loaded successfully
+2026-07-30 16:52:41 | Input: {"user_id":"guest_6a6b8124374e1","user_name":"Pengunjung","message":"menu","session":"menu","data":[]}
+2026-07-30 16:52:41 | User: guest_6a6b8124374e1, Msg: menu, State: menu
+2026-07-30 16:52:44 | Midtrans config loaded successfully
+2026-07-30 16:52:44 | Input: {"user_id":"guest_6a6b8124374e1","user_name":"Pengunjung","message":"1","session":"menu","data":[]}
+2026-07-30 16:52:44 | User: guest_6a6b8124374e1, Msg: 1, State: menu
+2026-07-30 16:52:48 | Midtrans config loaded successfully
+2026-07-30 16:52:48 | Input: {"user_id":"guest_6a6b8124374e1","user_name":"Pengunjung","message":"batal","session":"registrasi_1","data":[]}
+2026-07-30 16:52:48 | User: guest_6a6b8124374e1, Msg: batal, State: registrasi_1
+2026-07-30 16:52:50 | Midtrans config loaded successfully
+2026-07-30 16:52:50 | Input: {"user_id":"guest_6a6b8124374e1","user_name":"Pengunjung","message":"7","session":"menu","data":[]}
+2026-07-30 16:52:50 | User: guest_6a6b8124374e1, Msg: 7, State: menu
+2026-07-30 16:52:56 | Midtrans config loaded successfully
+2026-07-30 16:52:56 | Input: {"user_id":"guest_6a6b8124374e1","user_name":"Pengunjung","message":"6","session":"menu","data":[]}
+2026-07-30 16:52:56 | User: guest_6a6b8124374e1, Msg: 6, State: menu
+2026-07-30 16:52:58 | Midtrans config loaded successfully
+2026-07-30 16:52:58 | Input: {"user_id":"guest_6a6b8124374e1","user_name":"Pengunjung","message":"10000","session":"donasi_nominal","data":[]}
+2026-07-30 16:52:58 | User: guest_6a6b8124374e1, Msg: 10000, State: donasi_nominal
+2026-07-30 16:53:05 | Midtrans config loaded successfully
+2026-07-30 16:53:05 | Input: {"user_id":"guest_6a6b8124374e1","user_name":"Pengunjung","message":"fadlanbersaudara2@gmail.com","session":"donasi_email","data":{"donasi_nominal":10000}}
+2026-07-30 16:53:05 | User: guest_6a6b8124374e1, Msg: fadlanbersaudara2@gmail.com, State: donasi_email
+2026-07-30 16:53:05 | Midtrans config not available, using fallback
+2026-07-30 17:13:14 | Midtrans config loaded successfully
+2026-07-30 17:13:14 | Input: {"user_id":"guest_6a6b862341890","user_name":"Pengunjung","message":"1","session":"menu","data":{}}
+2026-07-30 17:13:14 | User: guest_6a6b862341890, Msg: 1, State: menu
+2026-07-30 17:22:27 | Midtrans config loaded successfully
+2026-07-30 17:22:27 | Input: {"user_id":"guest_1785432143327","user_name":"Pengunjung","message":"6","session":"menu","data":{}}
+2026-07-30 17:22:27 | User: guest_1785432143327, Msg: 6, State: menu
+2026-07-30 17:22:31 | Midtrans config loaded successfully
+2026-07-30 17:22:31 | Input: {"user_id":"guest_1785432143327","user_name":"Pengunjung","message":"25000","session":"donasi_nominal","data":[]}
+2026-07-30 17:22:31 | User: guest_1785432143327, Msg: 25000, State: donasi_nominal
+2026-07-30 17:22:35 | Midtrans config loaded successfully
+2026-07-30 17:22:35 | Input: {"user_id":"guest_1785432143327","user_name":"Pengunjung","message":"fadlanbersaudara2@gmail.com","session":"donasi_email","data":{"donasi_nominal":25000}}
+2026-07-30 17:22:35 | User: guest_1785432143327, Msg: fadlanbersaudara2@gmail.com, State: donasi_email
+2026-07-30 17:22:35 | Midtrans config not available, using fallback
+2026-07-30 17:23:00 | Midtrans config loaded successfully
+2026-07-30 17:23:00 | Input: {"user_id":"guest_1785432143327","user_name":"Pengunjung","message":"menu","session":"menu","data":[]}
+2026-07-30 17:23:00 | User: guest_1785432143327, Msg: menu, State: menu
+2026-07-30 17:23:03 | Midtrans config loaded successfully
+2026-07-30 17:23:03 | Input: {"user_id":"guest_1785432143327","user_name":"Pengunjung","message":"1","session":"menu","data":[]}
+2026-07-30 17:23:03 | User: guest_1785432143327, Msg: 1, State: menu
+2026-07-30 17:23:08 | Midtrans config loaded successfully
+2026-07-30 17:23:08 | Input: {"user_id":"guest_1785432143327","user_name":"Pengunjung","message":"Basuki Rahmat","session":"registrasi_1","data":[]}
+2026-07-30 17:23:08 | User: guest_1785432143327, Msg: Basuki Rahmat, State: registrasi_1
+2026-07-30 17:23:18 | Midtrans config loaded successfully
+2026-07-30 17:23:18 | Input: {"user_id":"guest_1785432143327","user_name":"Pengunjung","message":"1808040505830003","session":"registrasi_2","data":{"nama":"Basuki Rahmat"}}
+2026-07-30 17:23:18 | User: guest_1785432143327, Msg: 1808040505830003, State: registrasi_2
+2026-07-30 17:23:26 | Midtrans config loaded successfully
+2026-07-30 17:23:26 | Input: {"user_id":"guest_1785432143327","user_name":"Pengunjung","message":"menu","session":"registrasi_2","data":{"nama":"Basuki Rahmat"}}
+2026-07-30 17:23:26 | User: guest_1785432143327, Msg: menu, State: registrasi_2
+2026-07-30 17:23:31 | Midtrans config loaded successfully
+2026-07-30 17:23:31 | Input: {"user_id":"guest_1785432143327","user_name":"Pengunjung","message":"2","session":"menu","data":[]}
+2026-07-30 17:23:31 | User: guest_1785432143327, Msg: 2, State: menu
+2026-07-30 17:23:41 | Midtrans config loaded successfully
+2026-07-30 17:23:41 | Input: {"user_id":"guest_1785432143327","user_name":"Pengunjung","message":"1808040505830003","session":"cek_status","data":[]}
+2026-07-30 17:23:41 | User: guest_1785432143327, Msg: 1808040505830003, State: cek_status
+2026-07-30 17:24:14 | Midtrans config loaded successfully
+2026-07-30 17:24:14 | Input: {"user_id":"guest_1785432233943","user_name":"Pengunjung","message":"menu","session":"menu","data":{}}
+2026-07-30 17:24:14 | User: guest_1785432233943, Msg: menu, State: menu
+2026-07-30 17:24:17 | Midtrans config loaded successfully
+2026-07-30 17:24:17 | Input: {"user_id":"guest_1785432233943","user_name":"Pengunjung","message":"4","session":"menu","data":[]}
+2026-07-30 17:24:17 | User: guest_1785432233943, Msg: 4, State: menu
+2026-07-30 17:24:21 | Midtrans config loaded successfully
+2026-07-30 17:24:21 | Input: {"user_id":"guest_1785432233943","user_name":"Pengunjung","message":"batal","session":"login_nik","data":[]}
+2026-07-30 17:24:21 | User: guest_1785432233943, Msg: batal, State: login_nik
+2026-07-30 17:24:27 | Midtrans config loaded successfully
+2026-07-30 17:24:27 | Input: {"user_id":"guest_1785432233943","user_name":"Pengunjung","message":"6","session":"menu","data":[]}
+2026-07-30 17:24:27 | User: guest_1785432233943, Msg: 6, State: menu
+2026-07-30 17:26:28 | Midtrans config loaded successfully
+2026-07-30 17:26:28 | Input: {"user_id":"guest_1785432385743","user_name":"Pengunjung","message":"6","session":"menu","data":{}}
+2026-07-30 17:26:28 | User: guest_1785432385743, Msg: 6, State: menu
+2026-07-30 17:26:31 | Midtrans config loaded successfully
+2026-07-30 17:26:31 | Input: {"user_id":"guest_1785432385743","user_name":"Pengunjung","message":"25000","session":"donasi_nominal","data":[]}
+2026-07-30 17:26:31 | User: guest_1785432385743, Msg: 25000, State: donasi_nominal
+2026-07-30 17:26:35 | Midtrans config loaded successfully
+2026-07-30 17:26:35 | Input: {"user_id":"guest_1785432385743","user_name":"Pengunjung","message":"fadlanbersaudara2@gmail.com","session":"donasi_email","data":{"donasi_nominal":25000}}
+2026-07-30 17:26:35 | User: guest_1785432385743, Msg: fadlanbersaudara2@gmail.com, State: donasi_email
+2026-07-30 17:26:35 | Midtrans config not available, using fallback
+2026-07-30 17:29:05 | Midtrans config loaded successfully
+2026-07-30 17:29:05 | Input: {"user_id":"guest_1785432543521","user_name":"Pengunjung","message":"6","session":"menu","data":{}}
+2026-07-30 17:29:05 | User: guest_1785432543521, Msg: 6, State: menu
+2026-07-30 17:29:08 | Midtrans config loaded successfully
+2026-07-30 17:29:08 | Input: {"user_id":"guest_1785432543521","user_name":"Pengunjung","message":"25000","session":"donasi_nominal","data":[]}
+2026-07-30 17:29:08 | User: guest_1785432543521, Msg: 25000, State: donasi_nominal
+2026-07-30 17:29:11 | Midtrans config loaded successfully
+2026-07-30 17:29:11 | Input: {"user_id":"guest_1785432543521","user_name":"Pengunjung","message":"fadlanbersaudara2@gmail.com","session":"donasi_email","data":{"donasi_nominal":25000}}
+2026-07-30 17:29:11 | User: guest_1785432543521, Msg: fadlanbersaudara2@gmail.com, State: donasi_email
+2026-07-30 17:29:11 | Midtrans config not available, using fallback
+2026-07-30 17:29:22 | Midtrans config loaded successfully
+2026-07-30 17:29:22 | Input: {"user_id":"guest_1785432543521","user_name":"Pengunjung","message":"menu","session":"menu","data":[]}
+2026-07-30 17:29:22 | User: guest_1785432543521, Msg: menu, State: menu
+2026-07-30 17:29:29 | Midtrans config loaded successfully
+2026-07-30 17:29:29 | Input: {"user_id":"guest_1785432543521","user_name":"Pengunjung","message":"5","session":"menu","data":[]}
+2026-07-30 17:29:29 | User: guest_1785432543521, Msg: 5, State: menu
+2026-07-30 17:29:33 | Midtrans config loaded successfully
+2026-07-30 17:29:33 | Input: {"user_id":"guest_1785432543521","user_name":"Pengunjung","message":"menu","session":"menu","data":[]}
+2026-07-30 17:29:33 | User: guest_1785432543521, Msg: menu, State: menu
+2026-07-30 17:29:42 | Midtrans config loaded successfully
+2026-07-30 17:29:42 | Input: {"user_id":"guest_1785432543521","user_name":"Pengunjung","message":"3","session":"menu","data":[]}
+2026-07-30 17:29:42 | User: guest_1785432543521, Msg: 3, State: menu
+2026-07-30 17:29:57 | Midtrans config loaded successfully
+2026-07-30 17:29:57 | Input: {"user_id":"guest_1785432543521","user_name":"Pengunjung","message":"1","session":"menu","data":[]}
+2026-07-30 17:29:57 | User: guest_1785432543521, Msg: 1, State: menu
+2026-07-30 17:30:02 | Midtrans config loaded successfully
+2026-07-30 17:30:02 | Input: {"user_id":"guest_1785432543521","user_name":"Pengunjung","message":"Basuki Rahmat","session":"registrasi_1","data":[]}
+2026-07-30 17:30:02 | User: guest_1785432543521, Msg: Basuki Rahmat, State: registrasi_1
+2026-07-30 17:30:12 | Midtrans config loaded successfully
+2026-07-30 17:30:12 | Input: {"user_id":"guest_1785432543521","user_name":"Pengunjung","message":"1808040505830003","session":"registrasi_2","data":{"nama":"Basuki Rahmat"}}
+2026-07-30 17:30:12 | User: guest_1785432543521, Msg: 1808040505830003, State: registrasi_2
+2026-07-30 17:30:18 | Midtrans config loaded successfully
+2026-07-30 17:30:18 | Input: {"user_id":"guest_1785432543521","user_name":"Pengunjung","message":"Kalau","session":"registrasi_2","data":{"nama":"Basuki Rahmat"}}
+2026-07-30 17:30:18 | User: guest_1785432543521, Msg: Kalau, State: registrasi_2
+2026-07-30 17:30:24 | Midtrans config loaded successfully
+2026-07-30 17:30:24 | Input: {"user_id":"guest_1785432543521","user_name":"Pengunjung","message":"Kalau","session":"registrasi_2","data":{"nama":"Basuki Rahmat"}}
+2026-07-30 17:30:24 | User: guest_1785432543521, Msg: Kalau, State: registrasi_2
+2026-07-30 17:30:26 | Midtrans config loaded successfully
+2026-07-30 17:30:26 | Input: {"user_id":"guest_1785432543521","user_name":"Pengunjung","message":"batal","session":"registrasi_2","data":{"nama":"Basuki Rahmat"}}
+2026-07-30 17:30:26 | User: guest_1785432543521, Msg: batal, State: registrasi_2
+2026-07-30 17:34:30 | Midtrans config loaded successfully
+2026-07-30 17:34:30 | Input: {"user_id":"guest_1785432864055","user_name":"Pengunjung","message":"6","session":"menu","data":{}}
+2026-07-30 17:34:30 | User: guest_1785432864055, Msg: 6, State: menu
+2026-07-30 17:34:33 | Midtrans config loaded successfully
+2026-07-30 17:34:33 | Input: {"user_id":"guest_1785432864055","user_name":"Pengunjung","message":"10000","session":"donasi_nominal","data":[]}
+2026-07-30 17:34:33 | User: guest_1785432864055, Msg: 10000, State: donasi_nominal
+2026-07-30 17:34:51 | Midtrans config loaded successfully
+2026-07-30 17:34:51 | Input: {"user_id":"guest_1785432864055","user_name":"Pengunjung","message":"fadlanbersaudara2@gmail,com","session":"donasi_email","data":{"donasi_nominal":10000}}
+2026-07-30 17:34:51 | User: guest_1785432864055, Msg: fadlanbersaudara2@gmail,com, State: donasi_email
+2026-07-30 17:35:13 | Midtrans config loaded successfully
+2026-07-30 17:35:13 | Input: {"user_id":"guest_1785432864055","user_name":"Pengunjung","message":"fadlanbersaudara2@gmail.com","session":"donasi_email","data":{"donasi_nominal":10000}}
+2026-07-30 17:35:13 | User: guest_1785432864055, Msg: fadlanbersaudara2@gmail.com, State: donasi_email
+2026-07-30 17:35:13 | Midtrans config not available, using fallback
+2026-07-30 17:37:26 | Midtrans config loaded successfully
+2026-07-30 17:37:26 | Input: {"user_id":"guest_1785433043035","user_name":"Pengunjung","message":"6","session":"menu","data":{}}
+2026-07-30 17:37:26 | User: guest_1785433043035, Msg: 6, State: menu
+2026-07-30 17:37:28 | Midtrans config loaded successfully
+2026-07-30 17:37:28 | Input: {"user_id":"guest_1785433043035","user_name":"Pengunjung","message":"25000","session":"donasi_nominal","data":[]}
+2026-07-30 17:37:28 | User: guest_1785433043035, Msg: 25000, State: donasi_nominal
+2026-07-30 17:37:32 | Midtrans config loaded successfully
+2026-07-30 17:37:32 | Input: {"user_id":"guest_1785433043035","user_name":"Pengunjung","message":"fadlanbersaudara2@gmail.com","session":"donasi_email","data":{"donasi_nominal":25000}}
+2026-07-30 17:37:32 | User: guest_1785433043035, Msg: fadlanbersaudara2@gmail.com, State: donasi_email
+2026-07-30 17:37:32 | Midtrans config not available, using fallback
+2026-07-30 17:37:55 | Midtrans config loaded successfully
+2026-07-30 17:37:55 | Input: {"user_id":"guest_1785433071866","user_name":"Pengunjung","message":"6","session":"menu","data":{}}
+2026-07-30 17:37:55 | User: guest_1785433071866, Msg: 6, State: menu
+2026-07-30 17:37:57 | Midtrans config loaded successfully
+2026-07-30 17:37:57 | Input: {"user_id":"guest_1785433071866","user_name":"Pengunjung","message":"10000","session":"donasi_nominal","data":[]}
+2026-07-30 17:37:57 | User: guest_1785433071866, Msg: 10000, State: donasi_nominal
+2026-07-30 17:38:07 | Midtrans config loaded successfully
+2026-07-30 17:38:07 | Input: {"user_id":"guest_1785433071866","user_name":"Pengunjung","message":"aa@gmail.com","session":"donasi_email","data":{"donasi_nominal":10000}}
+2026-07-30 17:38:07 | User: guest_1785433071866, Msg: aa@gmail.com, State: donasi_email
+2026-07-30 17:38:07 | Midtrans config not available, using fallback
+2026-07-30 17:40:27 | Midtrans config loaded successfully
+2026-07-30 17:40:27 | Input: {"user_id":"guest_1785433224724","user_name":"Pengunjung","message":"6","session":"menu","data":{}}
+2026-07-30 17:40:27 | User: guest_1785433224724, Msg: 6, State: menu
+2026-07-30 17:40:29 | Midtrans config loaded successfully
+2026-07-30 17:40:29 | Input: {"user_id":"guest_1785433224724","user_name":"Pengunjung","message":"25000","session":"donasi_nominal","data":[]}
+2026-07-30 17:40:29 | User: guest_1785433224724, Msg: 25000, State: donasi_nominal
+2026-07-30 17:40:47 | Midtrans config loaded successfully
+2026-07-30 17:40:47 | Input: {"user_id":"guest_1785433224724","user_name":"Pengunjung","message":"Ss@gmail.com","session":"donasi_email","data":{"donasi_nominal":25000}}
+2026-07-30 17:40:47 | User: guest_1785433224724, Msg: Ss@gmail.com, State: donasi_email
+2026-07-30 17:40:47 | Midtrans config not available, using fallback
+2026-07-30 17:42:37 | Input: {"user_id":"guest_1785433355048","user_name":"Pengunjung","message":"6","session":"menu","data":{}}
+2026-07-30 17:42:40 | Input: {"user_id":"guest_1785433355048","user_name":"Pengunjung","message":"10000","session":"donasi_nominal","data":[]}
+2026-07-30 17:42:44 | Input: {"user_id":"guest_1785433355048","user_name":"Pengunjung","message":"fadlanbersaudara2@gmail.com","session":"donasi_email","data":{"nominal":10000}}
+2026-07-30 17:44:11 | Input: {"user_id":"guest_1785433355048","user_name":"Pengunjung","message":"menu","session":"menu","data":[]}
+2026-07-30 17:46:42 | Input: {"user_id":"guest_1785433599299","user_name":"Pengunjung","message":"6","session":"menu","data":{}}
+2026-07-30 17:46:43 | Input: {"user_id":"guest_1785433599299","user_name":"Pengunjung","message":"25000","session":"donasi_nominal","data":[]}
+2026-07-30 17:46:46 | Input: {"user_id":"guest_1785433599299","user_name":"Pengunjung","message":"fadlanbersaudara2@gmail.com","session":"donasi_email","data":{"nominal":25000}}
+2026-07-30 17:50:54 | Input: {"user_id":"guest_1785433846552","user_name":"Pengunjung","message":"6","session":"menu","data":{}}
+2026-07-30 17:50:56 | Input: {"user_id":"guest_1785433846552","user_name":"Pengunjung","message":"25000","session":"donasi_nominal","data":[]}
+2026-07-30 17:51:17 | Input: {"user_id":"guest_1785433846552","user_name":"Pengunjung","message":"fadlanbersaudara2@gmail.com","session":"donasi_email","data":{"nominal":25000}}
+2026-07-30 17:51:27 | Input: {"user_id":"guest_1785433846552","user_name":"Pengunjung","message":"menu","session":"menu","data":[]}
+2026-07-30 17:51:29 | Input: {"user_id":"guest_1785433846552","user_name":"Pengunjung","message":"6","session":"menu","data":[]}
+2026-07-30 17:51:32 | Input: {"user_id":"guest_1785433846552","user_name":"Pengunjung","message":"25000","session":"donasi_nominal","data":[]}
+2026-07-30 17:51:36 | Input: {"user_id":"guest_1785433846552","user_name":"Pengunjung","message":"Skip","session":"donasi_email","data":{"nominal":25000}}
+2026-07-30 17:51:53 | Input: {"user_id":"guest_1785433907210","user_name":"Pengunjung","message":"6","session":"menu","data":{}}
+2026-07-30 17:51:56 | Input: {"user_id":"guest_1785433907210","user_name":"Pengunjung","message":"25000","session":"donasi_nominal","data":[]}
+2026-07-30 17:51:59 | Input: {"user_id":"guest_1785433907210","user_name":"Pengunjung","message":"skip","session":"donasi_email","data":{"nominal":25000}}
+2026-07-30 17:54:14 | Input: {"user_id":"guest_1785434050836","user_name":"Pengunjung","message":"6","session":"menu","data":{}}
+2026-07-30 17:54:16 | Input: {"user_id":"guest_1785434050836","user_name":"Pengunjung","message":"25000","session":"donasi_nominal","data":[]}
+2026-07-30 17:54:19 | Input: {"user_id":"guest_1785434050836","user_name":"Pengunjung","message":"skip","session":"donasi_email","data":{"nominal":25000}}
+2026-07-30 17:56:12 | Input: {"user_id":"guest_1785434168530","user_name":"Pengunjung","message":"6","session":"menu","data":{}}
+2026-07-30 17:56:14 | Input: {"user_id":"guest_1785434168530","user_name":"Pengunjung","message":"25000","session":"donasi_nominal","data":[]}
+2026-07-30 17:56:17 | Input: {"user_id":"guest_1785434168530","user_name":"Pengunjung","message":"skip","session":"donasi_email","data":{"nominal":25000}}
+2026-07-30 17:57:05 | Input: {"user_id":"guest_1785434168530","user_name":"Pengunjung","message":"1","session":"menu","data":[]}
+2026-07-30 17:57:11 | Input: {"user_id":"guest_1785434168530","user_name":"Pengunjung","message":"bas","session":"registrasi_1","data":[]}
+2026-07-30 17:57:21 | Input: {"user_id":"guest_1785434168530","user_name":"Pengunjung","message":"1808040505830003","session":"registrasi_2","data":{"nama":"bas"}}
+2026-07-30 17:57:25 | Input: {"user_id":"guest_1785434168530","user_name":"Pengunjung","message":"batal","session":"registrasi_2","data":{"nama":"bas"}}
+2026-07-30 17:59:17 | Input: {"user_id":"guest_1785434353610","user_name":"Pengunjung","message":"6","session":"menu","data":{}}
+2026-07-30 17:59:20 | Input: {"user_id":"guest_1785434353610","user_name":"Pengunjung","message":"25000","session":"donasi_nominal","data":[]}
+2026-07-30 17:59:23 | Input: {"user_id":"guest_1785434353610","user_name":"Pengunjung","message":"skip","session":"donasi_email","data":{"nominal":25000}}
+2026-07-30 18:01:46 | Input: {"user_id":"guest_1785434503822","user_name":"Pengunjung","message":"6","session":"menu","data":{}}
+2026-07-30 18:01:48 | Input: {"user_id":"guest_1785434503822","user_name":"Pengunjung","message":"25000","session":"donasi_nominal","data":[]}
+2026-07-30 18:01:50 | Input: {"user_id":"guest_1785434503822","user_name":"Pengunjung","message":"skip","session":"donasi_email","data":{"nominal":25000}}
+2026-07-30 18:02:03 | Input: {"user_id":"guest_1785434518615","user_name":"Pengunjung","message":"1","session":"menu","data":{}}
+2026-07-30 18:02:10 | Input: {"user_id":"guest_1785434518615","user_name":"Pengunjung","message":"basuki rahmat","session":"registrasi_1","data":[]}
+2026-07-30 18:02:20 | Input: {"user_id":"guest_1785434518615","user_name":"Pengunjung","message":"1808040505830003","session":"registrasi_2","data":{"nama":"basuki rahmat"}}
+2026-07-30 18:02:24 | Input: {"user_id":"guest_1785434518615","user_name":"Pengunjung","message":"menu","session":"registrasi_2","data":{"nama":"basuki rahmat"}}
+2026-07-30 18:02:30 | Input: {"user_id":"guest_1785434518615","user_name":"Pengunjung","message":"6","session":"menu","data":[]}
+2026-07-30 18:02:33 | Input: {"user_id":"guest_1785434518615","user_name":"Pengunjung","message":"10000","session":"donasi_nominal","data":[]}
+2026-07-30 18:02:37 | Input: {"user_id":"guest_1785434518615","user_name":"Pengunjung","message":"skip","session":"donasi_email","data":{"nominal":10000}}
+2026-07-30 18:03:42 | Input: {"user_id":"guest_1785434620241","user_name":"Pengunjung","message":"6","session":"menu","data":{}}
+2026-07-30 18:03:44 | Input: {"user_id":"guest_1785434620241","user_name":"Pengunjung","message":"25000","session":"donasi_nominal","data":[]}
+2026-07-30 18:03:46 | Input: {"user_id":"guest_1785434620241","user_name":"Pengunjung","message":"skip","session":"donasi_email","data":{"nominal":25000}}
+2026-07-30 18:04:02 | Input: {"user_id":"guest_1785434630857","user_name":"Pengunjung","message":"6","session":"menu","data":{}}
+2026-07-30 18:04:05 | Input: {"user_id":"guest_1785434630857","user_name":"Pengunjung","message":"25000","session":"donasi_nominal","data":[]}
+2026-07-30 18:04:23 | Input: {"user_id":"guest_1785434630857","user_name":"Pengunjung","message":"aa@gmail.com","session":"donasi_email","data":{"nominal":25000}}
+2026-07-30 18:05:31 | Input: {"user_id":"guest_1785434726015","user_name":"Pengunjung","message":"5","session":"menu","data":{}}
+2026-07-30 18:05:34 | Input: {"user_id":"guest_1785434726015","user_name":"Pengunjung","message":"6","session":"menu","data":[]}
+2026-07-30 18:05:36 | Input: {"user_id":"guest_1785434726015","user_name":"Pengunjung","message":"25000","session":"donasi_nominal","data":[]}
+2026-07-30 18:05:37 | Input: {"user_id":"guest_1785434726015","user_name":"Pengunjung","message":"skip","session":"donasi_email","data":{"nominal":25000}}
+2026-07-30 18:07:04 | Input: {"user_id":"guest_1785434819815","user_name":"Pengunjung","message":"6","session":"menu","data":{}}
+2026-07-30 18:07:06 | Input: {"user_id":"guest_1785434819815","user_name":"Pengunjung","message":"25000","session":"donasi_nominal","data":[]}
+2026-07-30 18:07:07 | Input: {"user_id":"guest_1785434819815","user_name":"Pengunjung","message":"skip","session":"donasi_email","data":{"nominal":25000}}
+2026-07-30 18:09:08 | Input: {"user_id":"guest_1785434944499","user_name":"Pengunjung","message":"6","session":"menu","data":{}}
+2026-07-30 18:09:09 | Input: {"user_id":"guest_1785434944499","user_name":"Pengunjung","message":"25000","session":"donasi_nominal","data":[]}
+2026-07-30 18:09:10 | Input: {"user_id":"guest_1785434944499","user_name":"Pengunjung","message":"skip","session":"donasi_email","data":{"nominal":25000}}
+2026-07-30 18:14:04 | Input: {"user_id":"guest_1785435241535_j9gx3j","user_name":"Pengunjung","message":"6","session":"menu","data":{}}
+2026-07-30 18:14:07 | Input: {"user_id":"guest_1785435241535_j9gx3j","user_name":"Pengunjung","message":"25000","session":"donasi_nominal","data":[]}
+2026-07-30 18:14:08 | Input: {"user_id":"guest_1785435241535_j9gx3j","user_name":"Pengunjung","message":"skip","session":"donasi_email","data":{"nominal":25000}}
+2026-07-30 18:15:27 | Input: {"user_id":"guest_1785435322147_jxjs57","user_name":"Pengunjung","message":"6","session":"menu","data":{}}
+2026-07-30 18:15:29 | Input: {"user_id":"guest_1785435322147_jxjs57","user_name":"Pengunjung","message":"10000","session":"donasi_nominal","data":[]}
+2026-07-30 18:15:30 | Input: {"user_id":"guest_1785435322147_jxjs57","user_name":"Pengunjung","message":"skip","session":"donasi_email","data":{"nominal":10000}}
+2026-07-30 18:15:50 | Input: {"user_id":"guest_1785435347950_ztsbhm","user_name":"Pengunjung","message":"6","session":"menu","data":{}}
+2026-07-30 18:15:52 | Input: {"user_id":"guest_1785435347950_ztsbhm","user_name":"Pengunjung","message":"25000","session":"donasi_nominal","data":[]}
+2026-07-30 18:15:55 | Input: {"user_id":"guest_1785435347950_ztsbhm","user_name":"Pengunjung","message":"skip","session":"donasi_email","data":{"nominal":25000}}
+2026-07-30 18:16:22 | Input: {"user_id":"guest_1785435356866_xxcum2","user_name":"Pengunjung","message":"menu","session":"menu","data":{}}
+2026-07-30 18:16:26 | Input: {"user_id":"guest_1785435356866_xxcum2","user_name":"Pengunjung","message":"1","session":"menu","data":[]}
+2026-07-30 18:16:39 | Input: {"user_id":"guest_1785435356866_xxcum2","user_name":"Pengunjung","message":"Imam khanafi","session":"registrasi_1","data":[]}
+2026-07-30 18:28:06 | Input: {"user_id":"guest_1785435777732_ebxeil","user_name":"Pengunjung","message":"6","session":"menu","data":{}}
+2026-07-30 18:28:09 | Input: {"user_id":"guest_1785435777732_ebxeil","user_name":"Pengunjung","message":"25000","session":"donasi_nominal","data":[]}
+2026-07-30 18:28:11 | Input: {"user_id":"guest_1785435777732_ebxeil","user_name":"Pengunjung","message":"skip","session":"donasi_email","data":{"nominal":25000}}
+2026-07-30 19:24:37 | Input: {"user_id":"guest_1785439430257_7e3pg3","user_name":"Pengunjung","message":"4","session":"menu","data":{}}
+2026-07-30 19:24:52 | Input: {"user_id":"guest_1785439430257_7e3pg3","user_name":"Pengunjung","message":"1808040505830003","session":"login_nik","data":[]}
+2026-07-30 22:10:09 | Input: {"user_id":"guest_1785449368781","user_name":"Pengunjung","message":"2","session":"menu","data":{}}
+2026-07-31 00:12:51 | Input: {"user_id":"guest_1785456753425_vf2kvs","user_name":"Pengunjung","message":"4","session":"menu","data":{}}
+2026-07-31 00:13:25 | Input: {"user_id":"guest_1785456753425_vf2kvs","user_name":"Pengunjung","message":"1804161704980001","session":"login_nik","data":[]}
+2026-07-31 00:32:22 | Input: {"user_id":"guest_1785457836536","user_name":"Pengunjung","message":"1","session":"menu","data":{}}
+2026-07-31 00:33:18 | Input: {"user_id":"guest_1785457979840","user_name":"Pengunjung","message":"2","session":"menu","data":{}}
+2026-07-31 00:53:22 | Input: {"user_id":"guest_1785458963595_04df27","user_name":"Pengunjung","message":"Mas amirudin mengajak temen temen kumpul di bescam wayhalim","session":"menu","data":{}}
+2026-07-31 01:00:52 | Input: {"user_id":"guest_1785459628645_hp9o6v","user_name":"Pengunjung","message":"1","session":"menu","data":{}}
+2026-07-31 01:01:07 | Input: {"user_id":"guest_1785459628645_hp9o6v","user_name":"Pengunjung","message":"1","session":"registrasi_1","data":[]}
+2026-07-31 02:09:43 | Input: {"user_id":"guest_1785463712102_dfdm17","user_name":"Pengunjung","message":"3","session":"menu","data":{}}
+2026-07-31 02:09:51 | Input: {"user_id":"guest_1785463712102_dfdm17","user_name":"Pengunjung","message":"1","session":"menu","data":[]}
+2026-07-31 02:10:12 | Input: {"user_id":"guest_1785463712102_dfdm17","user_name":"Pengunjung","message":"Insiyah","session":"registrasi_1","data":[]}
+2026-07-31 02:12:26 | Input: {"user_id":"guest_1785463712102_dfdm17","user_name":"Pengunjung","message":"1804015203940002","session":"registrasi_2","data":{"nama":"Insiyah"}}
+2026-07-31 02:12:50 | Input: {"user_id":"guest_1785463712102_dfdm17","user_name":"Pengunjung","message":"batal","session":"registrasi_2","data":{"nama":"Insiyah"}}
+2026-07-31 02:12:56 | Input: {"user_id":"guest_1785463712102_dfdm17","user_name":"Pengunjung","message":"1","session":"menu","data":[]}
+2026-07-31 02:13:17 | Input: {"user_id":"guest_1785463712102_dfdm17","user_name":"Pengunjung","message":"Insiyah","session":"registrasi_1","data":[]}
+2026-07-31 04:40:12 | Input: {"user_id":"guest_1785472792465_ts1lj3","user_name":"Pengunjung","message":"1","session":"menu","data":{}}
+2026-07-31 04:40:30 | Input: {"user_id":"guest_1785472792091","user_name":"Pengunjung","message":"1","session":"menu","data":{}}
+2026-07-31 04:40:50 | Input: {"user_id":"guest_1785472792091","user_name":"Pengunjung","message":"FATIMAH","session":"registrasi_1","data":[]}
+2026-07-31 04:42:16 | Input: {"user_id":"guest_1785472792091","user_name":"Pengunjung","message":"1806026105810002","session":"registrasi_2","data":{"nama":"FATIMAH"}}
+2026-07-31 04:42:30 | Input: {"user_id":"guest_1785472792091","user_name":"Pengunjung","message":"menu","session":"registrasi_2","data":{"nama":"FATIMAH"}}
+2026-07-31 04:42:58 | Input: {"user_id":"guest_1785472792091","user_name":"Pengunjung","message":"4","session":"menu","data":[]}
+2026-07-31 04:43:12 | Input: {"user_id":"guest_1785472792091","user_name":"Pengunjung","message":"1806026105810002","session":"login_nik","data":[]}
+2026-07-31 05:14:41 | Input: {"user_id":"guest_1785474873876","user_name":"Pengunjung","message":"4","session":"menu","data":{}}
+2026-07-31 05:14:51 | Input: {"user_id":"guest_1785474873876","user_name":"Pengunjung","message":"1808040505830003","session":"login_nik","data":[]}
+2026-07-31 05:19:52 | Input: {"user_id":"guest_1785474873876","user_name":"Pengunjung","message":"6","session":"menu","data":[]}
+2026-07-31 05:19:54 | Input: {"user_id":"guest_1785474873876","user_name":"Pengunjung","message":"25000","session":"donasi_nominal","data":[]}
+2026-07-31 05:19:57 | Input: {"user_id":"guest_1785474873876","user_name":"Pengunjung","message":"skip","session":"donasi_email","data":{"nominal":25000}}
+2026-07-31 05:23:56 | Input: {"user_id":"guest_1785475285407_zxwhul","user_name":"Pengunjung","message":"6","session":"menu","data":{}}
+2026-07-31 05:23:58 | Input: {"user_id":"guest_1785475285407_zxwhul","user_name":"Pengunjung","message":"10000","session":"donasi_nominal","data":[]}
+2026-07-31 05:24:00 | Input: {"user_id":"guest_1785475285407_zxwhul","user_name":"Pengunjung","message":"skip","session":"donasi_email","data":{"nominal":10000}}
+2026-07-31 05:24:18 | Input: {"user_id":"guest_1785475285407_zxwhul","user_name":"Pengunjung","message":"6","session":"menu","data":[]}
+2026-07-31 05:24:19 | Input: {"user_id":"guest_1785475285407_zxwhul","user_name":"Pengunjung","message":"25000","session":"donasi_nominal","data":[]}
+2026-07-31 05:24:21 | Input: {"user_id":"guest_1785475285407_zxwhul","user_name":"Pengunjung","message":"skip","session":"donasi_email","data":{"nominal":25000}}
+2026-07-31 05:24:25 | Input: {"user_id":"guest_1785475285407_zxwhul","user_name":"Pengunjung","message":"6","session":"menu","data":[]}
+2026-07-31 05:24:26 | Input: {"user_id":"guest_1785475285407_zxwhul","user_name":"Pengunjung","message":"50000","session":"donasi_nominal","data":[]}
+2026-07-31 05:24:28 | Input: {"user_id":"guest_1785475285407_zxwhul","user_name":"Pengunjung","message":"skip","session":"donasi_email","data":{"nominal":50000}}
+2026-07-31 05:25:17 | Input: {"user_id":"guest_1785475285407_zxwhul","user_name":"Pengunjung","message":"menu","session":"menu","data":[]}
+2026-07-31 05:25:19 | Input: {"user_id":"guest_1785475285407_zxwhul","user_name":"Pengunjung","message":"4","session":"menu","data":[]}
+2026-07-31 05:26:21 | Input: {"user_id":"guest_1785475285407_zxwhul","user_name":"Pengunjung","message":"1808040505830003","session":"login_nik","data":[]}
+2026-07-31 05:29:15 | Input: {"user_id":"guest_1785475736064_gu9b2r","user_name":"Pengunjung","message":"4","session":"menu","data":{}}
+2026-07-31 05:29:18 | Input: {"user_id":"guest_1785475736064_gu9b2r","user_name":"Pengunjung","message":"1808040505830003","session":"login_nik","data":[]}
+2026-07-31 05:29:45 | Input: {"user_id":"guest_1785475782344_lmk0xz","user_name":"Pengunjung","message":"6","session":"menu","data":{}}
+2026-07-31 05:29:47 | Input: {"user_id":"guest_1785475782344_lmk0xz","user_name":"Pengunjung","message":"10000","session":"donasi_nominal","data":[]}
+2026-07-31 05:29:48 | Input: {"user_id":"guest_1785475782344_lmk0xz","user_name":"Pengunjung","message":"skip","session":"donasi_email","data":{"nominal":10000}}
+2026-07-31 05:31:14 | Input: {"user_id":"guest_1785475791380_mgm2a5","user_name":"Pengunjung","message":"3","session":"menu","data":{}}
+2026-07-31 05:31:25 | Input: {"user_id":"guest_1785475791380_mgm2a5","user_name":"Pengunjung","message":"1808040505830003","session":"menu","data":[]}
+2026-07-31 05:31:35 | Input: {"user_id":"guest_1785475791380_mgm2a5","user_name":"Pengunjung","message":"3","session":"menu","data":[]}
+2026-07-31 05:31:39 | Input: {"user_id":"guest_1785475791380_mgm2a5","user_name":"Pengunjung","message":"1","session":"menu","data":[]}
+2026-07-31 05:31:46 | Input: {"user_id":"guest_1785475791380_mgm2a5","user_name":"Pengunjung","message":"1808040505830003","session":"registrasi_1","data":[]}
+2026-07-31 05:31:55 | Input: {"user_id":"guest_1785475791380_mgm2a5","user_name":"Pengunjung","message":"batal","session":"registrasi_2","data":{"nama":"1808040505830003"}}
+2026-07-31 05:32:39 | Input: {"user_id":"guest_1785475942174_j05qh4","user_name":"Pengunjung","message":"6","session":"menu","data":{}}
+2026-07-31 05:32:42 | Input: {"user_id":"guest_1785475942174_j05qh4","user_name":"Pengunjung","message":"25000","session":"donasi_nominal","data":[]}
+2026-07-31 05:32:44 | Input: {"user_id":"guest_1785475942174_j05qh4","user_name":"Pengunjung","message":"skip","session":"donasi_email","data":{"nominal":25000}}
+2026-07-31 05:36:32 | Input: {"user_id":"guest_1785476187494_nkcrul","user_name":"Pengunjung","message":"8","session":"menu","data":{}}
+2026-07-31 05:36:41 | Input: {"user_id":"guest_1785476187494_nkcrul","user_name":"Pengunjung","message":"menu","session":"menu","data":[]}
+2026-07-31 05:40:18 | Input: {"user_id":"guest_1785476376402_fk0dri","user_name":"Pengunjung","message":"1","session":"menu","data":{}}
+2026-07-31 05:40:27 | Input: {"user_id":"guest_1785476376402_fk0dri","user_name":"Pengunjung","message":"basuki rahmat","session":"registrasi_1","data":[]}
+2026-07-31 05:40:49 | Input: {"user_id":"guest_1785476376402_fk0dri","user_name":"Pengunjung","message":"1808040505830001","session":"registrasi_2","data":{"nama":"basuki rahmat"}}
+2026-07-31 05:40:55 | Input: {"user_id":"guest_1785476376402_fk0dri","user_name":"Pengunjung","message":"081366584799","session":"registrasi_3","data":{"nama":"basuki rahmat","nik":"1808040505830001"}}
+2026-07-31 05:41:08 | Input: {"user_id":"guest_1785476376402_fk0dri","user_name":"Pengunjung","message":"batal","session":"registrasi_3","data":{"nama":"basuki rahmat","nik":"1808040505830001"}}
+2026-07-31 05:41:16 | Input: {"user_id":"guest_1785476376402_fk0dri","user_name":"Pengunjung","message":"3","session":"menu","data":[]}
+2026-07-31 05:45:50 | Input: {"user_id":"guest_1785476636878_tu3u5p","user_name":"Pengunjung","message":"taktau","session":"menu","data":{}}
+2026-07-31 06:10:54 | Input: {"user_id":"guest_1785478226970","user_name":"Pengunjung","message":"1","session":"menu","data":{}}
+2026-07-31 06:11:33 | Input: {"user_id":"guest_1785478227316_ayu0t9","user_name":"Pengunjung","message":"1","session":"menu","data":{}}
+2026-07-31 06:12:29 | Input: {"user_id":"guest_1785478226970","user_name":"Pengunjung","message":"Arif duliman Saputra","session":"registrasi_1","data":[]}
+2026-07-31 06:13:06 | Input: {"user_id":"guest_1785478226970","user_name":"Pengunjung","message":"1804070502910002","session":"registrasi_2","data":{"nama":"Arif duliman Saputra"}}
+2026-07-31 06:13:20 | Input: {"user_id":"guest_1785478226970","user_name":"Pengunjung","message":"085664236163","session":"registrasi_3","data":{"nama":"Arif duliman Saputra","nik":"1804070502910002"}}
+2026-07-31 06:13:25 | Input: {"user_id":"guest_1785478226970","user_name":"Pengunjung","message":"2","session":"registrasi_4","data":{"nama":"Arif duliman Saputra","nik":"1804070502910002","no_telp":"085664236163"}}
+2026-07-31 06:18:09 | Input: {"user_id":"guest_1785478226970","user_name":"Pengunjung","message":"skip","session":"registrasi_5","data":{"nama":"Arif duliman Saputra","nik":"1804070502910002","no_telp":"085664236163","tempat_mengajar":"TPA"}}
+2026-07-31 06:18:31 | Input: {"user_id":"guest_1785478226970","user_name":"Pengunjung","message":"YA","session":"registrasi_6","data":{"nama":"Arif duliman Saputra","nik":"1804070502910002","no_telp":"085664236163","tempat_mengajar":"TPA","email":""}}
+2026-07-31 06:18:46 | Input: {"user_id":"guest_1785478226970","user_name":"Pengunjung","message":"menu","session":"menu","data":[]}
+2026-07-31 06:18:57 | Input: {"user_id":"guest_1785478226970","user_name":"Pengunjung","message":"2","session":"menu","data":[]}
+2026-07-31 06:21:23 | Input: {"user_id":"guest_1785478857943_qfwh3v","user_name":"Pengunjung","message":"2","session":"menu","data":{}}
+2026-07-31 06:22:04 | Input: {"user_id":"guest_1785478857943_qfwh3v","user_name":"Pengunjung","message":"1803012811880004","session":"cek_status","data":[]}
+2026-07-31 06:22:26 | Input: {"user_id":"guest_1785478857943_qfwh3v","user_name":"Pengunjung","message":"1803012811880006","session":"menu","data":["1","menu"]}
+2026-07-31 06:22:48 | Input: {"user_id":"guest_1785478857943_qfwh3v","user_name":"Pengunjung","message":"2","session":"menu","data":[]}
+2026-07-31 06:22:59 | Input: {"user_id":"guest_1785478857943_qfwh3v","user_name":"Pengunjung","message":"1803012811880006","session":"cek_status","data":[]}
+2026-07-31 06:47:03 | Input: {"user_id":"guest_1785480393229_77bvez","user_name":"Pengunjung","message":"1","session":"menu","data":{}}
+2026-07-31 06:47:33 | Input: {"user_id":"guest_1785480393229_77bvez","user_name":"Pengunjung","message":"Dian nopita S.pd.l","session":"registrasi_1","data":[]}
+2026-07-31 06:48:44 | Input: {"user_id":"guest_1785480393229_77bvez","user_name":"Pengunjung","message":"1871085111740002","session":"registrasi_2","data":{"nama":"Dian nopita S.pd.l"}}
+2026-07-31 06:49:39 | Input: {"user_id":"guest_1785480393229_77bvez","user_name":"Pengunjung","message":"089631997343","session":"registrasi_3","data":{"nama":"Dian nopita S.pd.l","nik":"1871085111740002"}}
+2026-07-31 06:49:58 | Input: {"user_id":"guest_1785480393229_77bvez","user_name":"Pengunjung","message":"1","session":"registrasi_4","data":{"nama":"Dian nopita S.pd.l","nik":"1871085111740002","no_telp":"089631997343"}}
+2026-07-31 06:50:31 | Input: {"user_id":"guest_1785480393229_77bvez","user_name":"Pengunjung","message":"Skip","session":"registrasi_5","data":{"nama":"Dian nopita S.pd.l","nik":"1871085111740002","no_telp":"089631997343","tempat_mengajar":"Rumah Pribadi"}}
+2026-07-31 06:50:53 | Input: {"user_id":"guest_1785480393229_77bvez","user_name":"Pengunjung","message":"Ya","session":"registrasi_6","data":{"nama":"Dian nopita S.pd.l","nik":"1871085111740002","no_telp":"089631997343","tempat_mengajar":"Rumah Pribadi","email":""}}
+2026-07-31 07:30:41 | Input: {"user_id":"guest_1785482960296_f4pxgm","user_name":"Pengunjung","message":"1","session":"menu","data":{}}
+2026-07-31 07:31:15 | Input: {"user_id":"guest_1785482960296_f4pxgm","user_name":"Pengunjung","message":"Hendri gunawan","session":"registrasi_1","data":[]}
+2026-07-31 07:52:55 | Input: {"user_id":"guest_1785484355906_8opjj4","user_name":"Pengunjung","message":"1","session":"menu","data":{}}
+2026-07-31 07:52:58 | Input: {"user_id":"guest_1785484364918_ylnys5","user_name":"Pengunjung","message":"1","session":"menu","data":{}}
+2026-07-31 08:12:47 | Input: {"user_id":"guest_1785485470069_7yca78","user_name":"Pengunjung","message":"6","session":"menu","data":{}}
+2026-07-31 08:12:52 | Input: {"user_id":"guest_1785485470069_7yca78","user_name":"Pengunjung","message":"25000","session":"donasi_nominal","data":[]}
+2026-07-31 08:12:56 | Input: {"user_id":"guest_1785485470069_7yca78","user_name":"Pengunjung","message":"skip","session":"donasi_email","data":{"nominal":25000}}
+2026-07-31 08:13:07 | Input: {"user_id":"guest_1785485470069_7yca78","user_name":"Pengunjung","message":"skip","session":"donasi_email","data":{"nominal":25000}}
+2026-07-31 08:13:08 | Input: {"user_id":"guest_1785485546780_o5hs98","user_name":"Pengunjung","message":"6","session":"menu","data":{}}
+2026-07-31 08:13:16 | Input: {"user_id":"guest_1785485546780_o5hs98","user_name":"Pengunjung","message":"10000","session":"donasi_nominal","data":[]}
+2026-07-31 08:13:22 | Input: {"user_id":"guest_1785485470069_7yca78","user_name":"Pengunjung","message":"6","session":"menu","data":[]}
+2026-07-31 08:13:24 | Input: {"user_id":"guest_1785485470069_7yca78","user_name":"Pengunjung","message":"25000","session":"donasi_nominal","data":[]}
+2026-07-31 08:13:26 | Input: {"user_id":"guest_1785485470069_7yca78","user_name":"Pengunjung","message":"skip","session":"donasi_email","data":{"nominal":25000}}
+2026-07-31 08:13:46 | Input: {"user_id":"guest_1785485546780_o5hs98","user_name":"Pengunjung","message":"ayahfathan355@gmail.com","session":"donasi_email","data":{"nominal":10000}}
+2026-07-31 08:20:15 | Input: {"user_id":"guest_1785486002385_41nha6","user_name":"Pengunjung","message":"6","session":"menu","data":{}}
+2026-07-31 08:20:38 | Input: {"user_id":"guest_1785486002385_41nha6","user_name":"Pengunjung","message":"10000","session":"donasi_nominal","data":[]}
+2026-07-31 08:21:04 | Input: {"user_id":"guest_1785486002385_41nha6","user_name":"Pengunjung","message":"skip","session":"donasi_email","data":{"nominal":10000}}
+2026-07-31 08:21:35 | Input: {"user_id":"guest_1785486068451_m3m3f0","user_name":"Pengunjung","message":"4","session":"menu","data":{}}
+2026-07-31 08:22:48 | Input: {"user_id":"guest_1785486068451_m3m3f0","user_name":"Pengunjung","message":"1871125106010004","session":"login_nik","data":[]}
+2026-07-31 08:47:15 | Input: {"user_id":"guest_1785487597876_44z4e7","user_name":"Pengunjung","message":"1","session":"menu","data":{}}
+2026-07-31 08:47:23 | Input: {"user_id":"guest_1785487597876_44z4e7","user_name":"Pengunjung","message":"Basuki Rahmat","session":"registrasi_1","data":[]}
+2026-07-31 09:12:15 | Input: {"user_id":"guest_1785489113389","user_name":"Pengunjung","message":"1","session":"menu","data":{}}
+2026-07-31 09:19:30 | Input: {"user_id":"guest_1785489546335","user_name":"Pengunjung","message":"1","session":"menu","data":{}}
+2026-07-31 11:06:11 | Input: {"user_id":"guest_1785495911278_f39mr6","user_name":"Pengunjung","message":"menu","session":"menu","data":{}}
+2026-07-31 11:06:41 | Input: {"user_id":"guest_1785495911278_f39mr6","user_name":"Pengunjung","message":"2","session":"menu","data":[]}
+2026-07-31 13:00:55 | Input: {"user_id":"guest_1785502831194_9edr74","user_name":"Pengunjung","message":"7","session":"menu","data":{}}
+2026-07-31 13:01:04 | Input: {"user_id":"guest_1785502831194_9edr74","user_name":"Pengunjung","message":"6","session":"menu","data":[]}
+2026-07-31 13:39:34 | Input: {"user_id":"guest_1785505156345_f64lgi","user_name":"Pengunjung","message":"2","session":"menu","data":{}}
+2026-07-31 17:00:11 | Input: {"user_id":"guest_1785517167208_7faklb","user_name":"Pengunjung","message":"4","session":"menu","data":{}}

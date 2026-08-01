@@ -1,0 +1,16 @@
+2026-07-30 04:39:47 | Raw input: {"user_id":"guest_6a6ad5902b41e","user_name":"Pengunjung","message":"1","session":"menu","data":{}}
+2026-07-30 04:39:47 | Processing: userId=guest_6a6ad5902b41e, message=1
+2026-07-30 04:40:05 | Raw input: {"user_id":"guest_6a6ad5902b41e","user_name":"Pengunjung","message":"2","session":"menu","data":{}}
+2026-07-30 04:40:05 | Processing: userId=guest_6a6ad5902b41e, message=2
+2026-07-30 04:41:24 | Raw input: {"user_id":"guest_6a6ad5eeb5353","user_name":"Pengunjung","message":"menu","session":"menu","data":{}}
+2026-07-30 04:41:24 | Processing: userId=guest_6a6ad5eeb5353, message=menu
+2026-07-30 04:42:18 | Raw input: {"user_id":"guest_6a6ad6276e2b5","user_name":"Pengunjung","message":"1","session":"menu","data":{}}
+2026-07-30 04:42:18 | Processing: userId=guest_6a6ad6276e2b5, message=1
+2026-07-30 04:42:20 | Raw input: {"user_id":"guest_6a6ad6276e2b5","user_name":"Pengunjung","message":"menu","session":"menu","data":{}}
+2026-07-30 04:42:20 | Processing: userId=guest_6a6ad6276e2b5, message=menu
+2026-07-30 04:42:26 | Raw input: {"user_id":"guest_6a6ad630569f7","user_name":"Pengunjung","message":"menu","session":"menu","data":{}}
+2026-07-30 04:42:26 | Processing: userId=guest_6a6ad630569f7, message=menu
+2026-07-30 10:12:33 | Raw input: {"user_id":"guest_6a6b238ae553a","user_name":"Pengunjung","message":"1","session":"menu","data":{}}
+2026-07-30 10:12:33 | Processing: userId=guest_6a6b238ae553a, message=1
+2026-07-30 10:13:22 | Raw input: {"user_id":"guest_6a6b238ae553a","user_name":"Pengunjung","message":"a","session":"menu","data":{}}
+2026-07-30 10:13:22 | Processing: userId=guest_6a6b238ae553a, message=a

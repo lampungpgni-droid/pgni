@@ -1,0 +1,84 @@
+[30-Jul-2026 04:33:12 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "FONNTE_API_KEY" in /home/fadlanbe/public_html/pgnil/chatbot/api.php:71
+Stack trace:
+#0 {main}
+  thrown in /home/fadlanbe/public_html/pgnil/chatbot/api.php on line 71
+[30-Jul-2026 04:33:14 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "FONNTE_API_KEY" in /home/fadlanbe/public_html/pgnil/chatbot/api.php:71
+Stack trace:
+#0 {main}
+  thrown in /home/fadlanbe/public_html/pgnil/chatbot/api.php on line 71
+[30-Jul-2026 04:33:23 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "FONNTE_API_KEY" in /home/fadlanbe/public_html/pgnil/chatbot/api.php:71
+Stack trace:
+#0 {main}
+  thrown in /home/fadlanbe/public_html/pgnil/chatbot/api.php on line 71
+[30-Jul-2026 04:33:26 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "FONNTE_API_KEY" in /home/fadlanbe/public_html/pgnil/chatbot/api.php:71
+Stack trace:
+#0 {main}
+  thrown in /home/fadlanbe/public_html/pgnil/chatbot/api.php on line 71
+[30-Jul-2026 04:33:27 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "FONNTE_API_KEY" in /home/fadlanbe/public_html/pgnil/chatbot/api.php:71
+Stack trace:
+#0 {main}
+  thrown in /home/fadlanbe/public_html/pgnil/chatbot/api.php on line 71
+[30-Jul-2026 04:33:47 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "FONNTE_API_KEY" in /home/fadlanbe/public_html/pgnil/chatbot/api.php:71
+Stack trace:
+#0 {main}
+  thrown in /home/fadlanbe/public_html/pgnil/chatbot/api.php on line 71
+[30-Jul-2026 04:35:10 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "FONNTE_API_KEY" in /home/fadlanbe/public_html/pgnil/chatbot/api.php:71
+Stack trace:
+#0 {main}
+  thrown in /home/fadlanbe/public_html/pgnil/chatbot/api.php on line 71
+[30-Jul-2026 04:37:03 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "FONNTE_API_KEY" in /home/fadlanbe/public_html/pgnil/chatbot/api.php:71
+Stack trace:
+#0 {main}
+  thrown in /home/fadlanbe/public_html/pgnil/chatbot/api.php on line 71
+[30-Jul-2026 04:38:57 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "FONNTE_API_KEY" in /home/fadlanbe/public_html/pgnil/chatbot/api.php:71
+Stack trace:
+#0 {main}
+  thrown in /home/fadlanbe/public_html/pgnil/chatbot/api.php on line 71
+[30-Jul-2026 04:39:47 UTC] PHP Warning:  require_once(/home/fadlanbe/public_html/pgnil/chatbot/SimpleChatHandler.php): Failed to open stream: No such file or directory in /home/fadlanbe/public_html/pgnil/chatbot/api.php on line 111
+[30-Jul-2026 04:39:47 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/fadlanbe/public_html/pgnil/chatbot/SimpleChatHandler.php' (include_path='.:/opt/alt/php82/usr/share/pear:/opt/alt/php82/usr/share/php:/usr/share/pear:/usr/share/php') in /home/fadlanbe/public_html/pgnil/chatbot/api.php:111
+Stack trace:
+#0 {main}
+  thrown in /home/fadlanbe/public_html/pgnil/chatbot/api.php on line 111
+[30-Jul-2026 04:40:05 UTC] PHP Warning:  require_once(/home/fadlanbe/public_html/pgnil/chatbot/SimpleChatHandler.php): Failed to open stream: No such file or directory in /home/fadlanbe/public_html/pgnil/chatbot/api.php on line 111
+[30-Jul-2026 04:40:05 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/fadlanbe/public_html/pgnil/chatbot/SimpleChatHandler.php' (include_path='.:/opt/alt/php82/usr/share/pear:/opt/alt/php82/usr/share/php:/usr/share/pear:/usr/share/php') in /home/fadlanbe/public_html/pgnil/chatbot/api.php:111
+Stack trace:
+#0 {main}
+  thrown in /home/fadlanbe/public_html/pgnil/chatbot/api.php on line 111
+[30-Jul-2026 04:41:24 UTC] PHP Warning:  require_once(/home/fadlanbe/public_html/pgnil/chatbot/SimpleChatHandler.php): Failed to open stream: No such file or directory in /home/fadlanbe/public_html/pgnil/chatbot/api.php on line 111
+[30-Jul-2026 04:41:24 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/fadlanbe/public_html/pgnil/chatbot/SimpleChatHandler.php' (include_path='.:/opt/alt/php82/usr/share/pear:/opt/alt/php82/usr/share/php:/usr/share/pear:/usr/share/php') in /home/fadlanbe/public_html/pgnil/chatbot/api.php:111
+Stack trace:
+#0 {main}
+  thrown in /home/fadlanbe/public_html/pgnil/chatbot/api.php on line 111
+[30-Jul-2026 04:42:18 UTC] PHP Warning:  require_once(/home/fadlanbe/public_html/pgnil/chatbot/SimpleChatHandler.php): Failed to open stream: No such file or directory in /home/fadlanbe/public_html/pgnil/chatbot/api.php on line 111
+[30-Jul-2026 04:42:18 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/fadlanbe/public_html/pgnil/chatbot/SimpleChatHandler.php' (include_path='.:/opt/alt/php82/usr/share/pear:/opt/alt/php82/usr/share/php:/usr/share/pear:/usr/share/php') in /home/fadlanbe/public_html/pgnil/chatbot/api.php:111
+Stack trace:
+#0 {main}
+  thrown in /home/fadlanbe/public_html/pgnil/chatbot/api.php on line 111
+[30-Jul-2026 04:42:20 UTC] PHP Warning:  require_once(/home/fadlanbe/public_html/pgnil/chatbot/SimpleChatHandler.php): Failed to open stream: No such file or directory in /home/fadlanbe/public_html/pgnil/chatbot/api.php on line 111
+[30-Jul-2026 04:42:20 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/fadlanbe/public_html/pgnil/chatbot/SimpleChatHandler.php' (include_path='.:/opt/alt/php82/usr/share/pear:/opt/alt/php82/usr/share/php:/usr/share/pear:/usr/share/php') in /home/fadlanbe/public_html/pgnil/chatbot/api.php:111
+Stack trace:
+#0 {main}
+  thrown in /home/fadlanbe/public_html/pgnil/chatbot/api.php on line 111
+[30-Jul-2026 04:42:26 UTC] PHP Warning:  require_once(/home/fadlanbe/public_html/pgnil/chatbot/SimpleChatHandler.php): Failed to open stream: No such file or directory in /home/fadlanbe/public_html/pgnil/chatbot/api.php on line 111
+[30-Jul-2026 04:42:26 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/fadlanbe/public_html/pgnil/chatbot/SimpleChatHandler.php' (include_path='.:/opt/alt/php82/usr/share/pear:/opt/alt/php82/usr/share/php:/usr/share/pear:/usr/share/php') in /home/fadlanbe/public_html/pgnil/chatbot/api.php:111
+Stack trace:
+#0 {main}
+  thrown in /home/fadlanbe/public_html/pgnil/chatbot/api.php on line 111
+[30-Jul-2026 10:12:33 UTC] PHP Warning:  require_once(/home/fadlanbe/public_html/pgnil/chatbot/SimpleChatHandler.php): Failed to open stream: No such file or directory in /home/fadlanbe/public_html/pgnil/chatbot/api.php on line 111
+[30-Jul-2026 10:12:33 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/fadlanbe/public_html/pgnil/chatbot/SimpleChatHandler.php' (include_path='.:/opt/alt/php82/usr/share/pear:/opt/alt/php82/usr/share/php:/usr/share/pear:/usr/share/php') in /home/fadlanbe/public_html/pgnil/chatbot/api.php:111
+Stack trace:
+#0 {main}
+  thrown in /home/fadlanbe/public_html/pgnil/chatbot/api.php on line 111
+[30-Jul-2026 10:13:22 UTC] PHP Warning:  require_once(/home/fadlanbe/public_html/pgnil/chatbot/SimpleChatHandler.php): Failed to open stream: No such file or directory in /home/fadlanbe/public_html/pgnil/chatbot/api.php on line 111
+[30-Jul-2026 10:13:22 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/fadlanbe/public_html/pgnil/chatbot/SimpleChatHandler.php' (include_path='.:/opt/alt/php82/usr/share/pear:/opt/alt/php82/usr/share/php:/usr/share/pear:/usr/share/php') in /home/fadlanbe/public_html/pgnil/chatbot/api.php:111
+Stack trace:
+#0 {main}
+  thrown in /home/fadlanbe/public_html/pgnil/chatbot/api.php on line 111
+[30-Jul-2026 15:25:03 UTC] PGNI Chat: User: Pengunjung, Message: 6, Session: menu
+[30-Jul-2026 15:27:07 UTC] PGNI Chat: User: Pengunjung, Message: 5000, Session: donasi_nominal
+[30-Jul-2026 15:27:22 UTC] PGNI Chat: User: Pengunjung, Message: 6, Session: menu
+[30-Jul-2026 15:27:26 UTC] PGNI Chat: User: Pengunjung, Message: 10000, Session: donasi_nominal
+[30-Jul-2026 15:30:41 UTC] PGNI Chat: User: Pengunjung, Message: 1, Session: menu
+[30-Jul-2026 15:30:49 UTC] PGNI Chat: User: Pengunjung, Message: Basuki Rahmat, Session: registrasi_nama
+[30-Jul-2026 15:36:09 UTC] PGNI Chat: User: Pengunjung, Message: 1, Session: menu
+[30-Jul-2026 15:36:18 UTC] PGNI Chat: User: Pengunjung, Message: Basuki Rahmat, Session: registrasi_nama
